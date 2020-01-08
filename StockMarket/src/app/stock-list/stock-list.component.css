@@ -1,0 +1,62 @@
+
+body {
+  padding-top: 25px;
+  width: 100%;
+  height: 66rem;
+  background: rgb(128, 231, 231);
+}
+
+mat-form-field.mat-form-field {
+  font-size: 20px;
+  margin: 0 0 0 0 
+}
+
+mat-button.mat-button{
+  font-size: 15px
+}
+
+table{
+  width: 95%;
+  color: white;
+  margin: 20px auto;
+  padding: 0 auto
+}
+
+h6{
+  font-size: 15px
+}
+
+.btn{
+  width:125px;
+  padding-top:5px;
+  padding-bottom:5px;
+  color:white;
+
+
+  float:left;
+  margin-left:16px;
+  font-weight:800;
+  font-size:0.8em;
+}
+
+
+div {
+  font-size: 1em;
+  padding-left: 50px;
+}
+
+.delete{
+  padding-left: 50px
+}
+
+a {
+  color:#525252
+}
+
+a:hover {
+  color: blue
+}
+
+mat-heder-cell, mat-cell{
+  text-align: center; 
+}

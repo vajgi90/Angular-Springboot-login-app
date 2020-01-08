@@ -1,0 +1,19 @@
+
+<div class="body">
+  
+
+<div class="box">
+
+  <h1>Sign In</h1>
+
+
+  <div>
+    Email: <input type="text" class="email" name="email" [(ngModel)] = "loginUserData.email">
+    Password: <input type="password" class="password" name="password" [(ngModel)] = "loginUserData.password">
+
+    <button mat-raised-button (click)=handleLogin() class="btn">Sign In</button>
+    <button  mat-raised-button routerLink="/register" class="btn">Sign Up</button>
+  </div>
+</div>
+<mat-spinner *ngIf="showSpinner" class="spinner" [diameter]="50"></mat-spinner>
+</div>
