@@ -1,27 +1,27 @@
-package hu.flowacademy.login.demo.entity;
+package hu.jst.demo.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="users")
+@Table(name="users_login")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(nullable = false)
     private String password;
-
-    private User() {}
 
     public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
+
+    private User() {}
 
     public Long getId() {
         return id;

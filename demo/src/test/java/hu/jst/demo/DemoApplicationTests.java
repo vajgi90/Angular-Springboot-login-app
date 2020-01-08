@@ -1,4 +1,4 @@
-package hu.flowacademy.login.demo;
+package hu.jst.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
