@@ -1,7 +1,7 @@
 
 <body>
   
-<table mat-table [dataSource]="stocks" matSort class="stocks" >
+<table mat-table [dataSource]="stocks" class="stocks" >
 
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -9,17 +9,17 @@
     </ng-container>
 
   <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>
+    <th mat-header-cell *matHeaderCellDef> Symbol </th>
     <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
   </ng-container>
 
   <ng-container matColumnDef="open">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Open </th>
+    <th mat-header-cell *matHeaderCellDef> Open </th>
     <td mat-cell *matCellDef="let element"> {{element.open}} </td>
   </ng-container>
 
   <ng-container matColumnDef="high">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Highest </th>
+    <th mat-header-cell *matHeaderCellDef> Highest </th>
     <td mat-cell *matCellDef="let element"> {{element.high}} </td>
   </ng-container>
 

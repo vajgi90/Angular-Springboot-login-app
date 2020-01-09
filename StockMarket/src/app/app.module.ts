@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { StockListComponent } from './stock-list/stock-list.component';
 import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -21,7 +20,6 @@ import { MaterialModule } from './material/material.module';
     FooterComponent,
     StockListComponent,
     LoginComponent,
-    LogoutComponent,
     RegisterComponent,
     RegisterComponent,
     PageNotFoundComponent,
@@ -34,7 +32,7 @@ import { MaterialModule } from './material/material.module';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

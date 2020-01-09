@@ -19,7 +19,11 @@ table{
   width: 95%;
   color: white;
   margin: 20px auto;
-  padding: 0 auto
+  padding: 0 auto;
+  text-align: center !important
+}
+.mat-header-cell {
+  text-align: center;
 }
 
 h6{
