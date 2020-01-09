@@ -19,7 +19,6 @@ public interface StockRepository extends JpaRepository<StockEntity, Long> {
     @Override
     public List<StockEntity> findAll();
 
-    @Query(value = "select * from stocks where symbol = ?1", nativeQuery = true)
     public StockEntity findBySymbol(String symbol);
 
     @Modifying

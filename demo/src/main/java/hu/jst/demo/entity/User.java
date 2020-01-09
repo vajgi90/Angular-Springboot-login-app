@@ -16,6 +16,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(name = "budget", nullable = false)
+    private long budget = 10000000;
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;
@@ -47,12 +50,24 @@ public class User {
         this.password = password;
     }
 
+    public long getBudget() {
+        return budget;
+    }
+
+    public void setBudget(long budget) {
+        if(budget > 0) this.budget = budget;
+        else {
+            System.out.println("The budget can't be negative!");
+        }
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", budget=" + budget +
                 '}';
     }
 }

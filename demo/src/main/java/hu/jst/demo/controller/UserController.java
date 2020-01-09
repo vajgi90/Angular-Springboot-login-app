@@ -3,12 +3,8 @@ package hu.jst.demo.controller;
 
 import hu.jst.demo.entity.Auth;
 import hu.jst.demo.entity.User;
-import hu.jst.demo.entity.UserRegister;
 import hu.jst.demo.repository.UserRepository;
 import hu.jst.demo.service.UserService;
-import org.apache.tomcat.util.json.JSONParser;
-import org.json.JSONObject;
-import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
