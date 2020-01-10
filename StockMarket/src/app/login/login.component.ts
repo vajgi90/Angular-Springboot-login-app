@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 
 
@@ -10,9 +9,6 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-
-
 
 
   constructor(private router: Router, 
@@ -34,7 +30,6 @@ export class LoginComponent implements OnInit {
     resp.subscribe((data) => this.temp = data);
     this.output = Object.values(this.temp).toString();
     if(this.output == "OK") {
-      this.service.onSwitchLoggedIn();
       this.router.navigate(['stocks']);
       this.invalidLogin = false;
     } else {

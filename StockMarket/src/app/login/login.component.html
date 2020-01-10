@@ -8,8 +8,8 @@
 
 
   <div>
-    Email: <input type="text" class="email" name="email" [(ngModel)] = "loginUserData.email">
-    Password: <input type="password" class="password" name="password" [(ngModel)] = "loginUserData.password">
+    Email: <input type="text" class="email" name="email" [(ngModel)] = "userLoginData.email">
+    Password: <input type="password" class="password" name="password" [(ngModel)] = "userLoginData.password">
 
     <button mat-raised-button (click)=handleLogin() class="btn">Sign In</button>
     <button  mat-raised-button routerLink="/register" class="btn">Sign Up</button>

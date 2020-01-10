@@ -12,19 +12,8 @@ export class AuthService {
   private _registerUrl = "http://localhost:8080/register";
   private _loginUrl = "http://localhost:8080/user/login";
 
-  public isLoggedIn = false;
 
   item: any;
-
-  onSwitchLoggedIn() {
-    this.isLoggedIn = !this.loggedIn;
-  }
-
-  loggedIn() {
-    return this.isLoggedIn;
-  }
-
-
 
   constructor(private http: HttpClient) { }
 
