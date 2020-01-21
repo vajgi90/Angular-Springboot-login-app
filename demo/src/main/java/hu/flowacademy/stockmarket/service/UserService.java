@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -24,15 +25,15 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findOne(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public Optional<User> findOne(Long id) {
+        return userRepository.findById(id);
     }
 
     public User save(User user) {
         if (user.getId() == null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         } else {
-            User oldUser = findOne(user.getId());
+            User oldUser = userRepository.findById(user.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             user.setPassword(oldUser.getPassword());
         }
         return userRepository.save(user);

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -51,6 +52,8 @@ public class Stock {
 
     @Column(name = "changePercent")
     private String changePercent;
+
+    private LocalDateTime savingTime;
 
     public void setId(long id) {
         this.id = id;
@@ -107,5 +110,6 @@ public class Stock {
         setPreviousClose(previousClose);
         setChange(change);
         this.changePercent = changePercent;
+        this.savingTime = LocalDateTime.now();
     }
 }
