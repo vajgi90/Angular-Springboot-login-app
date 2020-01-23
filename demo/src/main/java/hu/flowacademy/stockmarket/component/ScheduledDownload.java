@@ -1,6 +1,9 @@
 package hu.flowacademy.stockmarket.component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sun.tools.jconsole.JConsoleContext;
+import hu.flowacademy.stockmarket.persistance.model.Stock2;
+import hu.flowacademy.stockmarket.service.Stock2Service;
 import hu.flowacademy.stockmarket.service.StockService;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +15,24 @@ import org.springframework.stereotype.Component;
 @EnableScheduling
 public class ScheduledDownload {
 
-    private String[] stockList = {"MSFT",  "TSLA", "AMZN", "GOOGL"};
-/*            , "CMSCA", "ARQL", "LIFE", "MRLV", "BGCP", "MYL", "AMAT", "QCOM", "GILD", "BBBY", "HBAN", "NVDA",
-            "EBAY", "ACOR", "NFLX", "GPOR", "SPPI", "SBUX", "AGNC", "ATVI", "TEAM", "OSTK", };*/
+    private String[] stockList = {"MSFT"}; /*"TSLA", "AMZN", "GOOGL","AAPL"};*/
 
     @Autowired
-    StockService stockService;
+    Stock2Service stock2Service;
 
-    @Scheduled(fixedDelay = 120000, initialDelay = 10000)
+/*    @Scheduled(fixedDelay = 120000, initialDelay = 10000)
     public void downloadStocks() throws JsonProcessingException, JSONException {
         for (int i = 0; i < stockList.length; i++) {
             stockService.stockDownloader(stockList[i]);
             System.out.println(System.nanoTime());
+        }
+    }*/
+
+    @Scheduled(fixedDelay = 600000, initialDelay = 10)
+    public void downloadStocks() throws JsonProcessingException, JSONException {
+        for (int i = 0; i < stockList.length; i++) {
+            var s = stock2Service.stockDownloader2(stockList[i]);
+            System.out.println(s);
         }
     }
 }

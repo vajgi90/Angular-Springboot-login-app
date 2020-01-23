@@ -47,7 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements R
                 .antMatchers("/api/users", "/api/users/**").hasAnyAuthority(Role.ADMIN.name())
                 .anyRequest().authenticated()
                 .and().formLogin().permitAll()
-                .and().csrf().disable();
+                .and().csrf().disable()
+                .cors();
         // @formatter:on
     }
 

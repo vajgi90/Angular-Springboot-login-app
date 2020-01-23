@@ -1,7 +1,9 @@
 package hu.flowacademy.stockmarket.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hu.flowacademy.stockmarket.persistance.model.Stock;
+import hu.flowacademy.stockmarket.persistance.model.Stock2;
 import hu.flowacademy.stockmarket.persistance.repository.StockRepository;
 import lombok.AllArgsConstructor;
 import org.json.JSONException;
