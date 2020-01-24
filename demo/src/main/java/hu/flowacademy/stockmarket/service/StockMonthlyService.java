@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import hu.flowacademy.stockmarket.persistance.model.StockMonthly;
 import hu.flowacademy.stockmarket.persistance.repository.StockMonthlyRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.springframework.http.*;
@@ -21,6 +22,7 @@ import java.util.List;
 @Service
 @Transactional
 @AllArgsConstructor
+@Slf4j
 public class StockMonthlyService {
 
     private final StockMonthlyRepository stockMonthlyRepository;
@@ -37,10 +39,10 @@ public class StockMonthlyService {
         HttpEntity<String> entity = new HttpEntity<String>(headers);
         ResponseEntity<String> response = restTemplate.exchange(resourceUrl, HttpMethod.GET, entity, String.class);
         JSONArray obj = new JSONArray(response.getBody().toString());
-        System.out.println(obj.toString());
+        log.info(obj.toString());
         Type listType = new TypeToken<ArrayList<StockMonthly>>(){}.getType();
         ArrayList<StockMonthly> list = gson.fromJson(obj.toString(), listType);
-        list.forEach(x -> stockMonthlyRepository.save(x));
+        stockMonthlyRepository.saveAll(list);
         return list;
     }
 }

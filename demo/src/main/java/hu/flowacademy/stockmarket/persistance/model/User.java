@@ -21,7 +21,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "users")
-@CrossOrigin(origins = "http://localhost:4200")
 public class User implements UserDetails {
 
     @Id

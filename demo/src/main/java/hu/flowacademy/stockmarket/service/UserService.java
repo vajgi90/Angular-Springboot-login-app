@@ -16,7 +16,6 @@ import java.util.Optional;
 @Service
 @Transactional
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
 public class UserService {
 
     private final UserRepository userRepository;

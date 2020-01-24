@@ -2,20 +2,19 @@ package hu.flowacademy.stockmarket.persistance.repository;
 
 import hu.flowacademy.stockmarket.persistance.model.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long> {
 
-    public Stock findBySymbol(String symbol);
+    public Optional<Stock> findFirstBySymbol(String symbol);
 
-    @Transactional
+    public void deleteBySymbol (String symbol);
+
+
+/*    @Transactional
     @Modifying
     @Query(value = "UPDATE stocks SET " +
             "change_ = ?2 ,change_percent = ?3,high = ?4,latest_trading_day = ?5, low = ?6, open_ = ?7, previous_close = ?8,price = ?9,volume = ?10 " +
@@ -36,5 +35,5 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
     public int isExist(String symbol);
 
     @Query(value = "DELETE FROM stocks WHERE symbol = ?1", nativeQuery = true)
-    public void deleteBySymbol (String symbol);
+    public void deleteBySymbol (String symbol);*/
 }

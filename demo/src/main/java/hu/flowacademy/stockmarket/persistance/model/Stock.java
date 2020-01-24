@@ -1,13 +1,13 @@
 package hu.flowacademy.stockmarket.persistance.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @Entity
@@ -19,97 +19,113 @@ import java.time.LocalDateTime;
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "symbol")
+    @Column(name="symbol")
     private String symbol;
 
-    @Column(name = "open_")
+    @Column(name = "companyName")
+    private String companyName;
+
+    @Column(name = "primaryExchange")
+    private String primaryExchange;
+
+    @Column(name = "calculationPrice")
+    private String calculationPrice;
+
+    @Column(name = "open")
     private Double open;
+
+    @Column(name = "openTime")
+    private Long openTime;
+
+    @Column(name = "_close")
+    private Double close;
+
+    @Column(name = "closeTime")
+    private Long closeTime;
 
     @Column(name = "high")
     private Double high;
 
-
     @Column(name = "low")
-    private Double low;
+    private Long low;
 
-    @Column(name = "price")
-    private Double price;
+    @Column(name = "latestPrice")
+    private Double latestPrice;
 
-    @Column(name = "volume")
-    private Integer volume;
+    @Column(name = "latestSource")
+    private String latestSource;
 
-    @Column(name = "latestTradingDay")
-    private LocalDate latestTradingDay;
+    @Column(name = "latestTime")
+    private String latestTime;
 
-    @Column(name = "previousClose")
+    @Column(name = "latestUpdate")
+    private Long latestUpdate;
+
+    private Long latestVolume;
+
+    private Double iexRealtimePrice;
+
+    private Long iexRealtimeSize;
+
+    private Long iexLastUpdated;
+
+    @Transient
+    private Double delayedPrice;
+
+    @Transient
+    private Long delayedPriceTime;
+
+    @Transient
+    private Double extendedPrice;
+
+    @Transient
+    private Double extendedChange;
+
+    @Transient
+    private Double extendedChangePercent;
+
+    @Transient
+    private Long extendedPriceTime;
+
     private Double previousClose;
 
-    @Column(name = "change_")
+    private Long previousVolume;
+
+    @Column(name = "_change")
     private Double change;
 
-    @Column(name = "changePercent")
-    private String changePercent;
+    private Double changePercent;
 
-    private LocalDateTime savingTime;
+    private Long volume;
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
+    private Double iexMarketPercent;
 
-    public void setOpen(String open) {
-        this.open = Double.parseDouble(open);
-    }
+    private Long iexVolume;
 
-    public void setHigh(String high) {
-        this.high = Double.parseDouble(high);
-    }
+    private Long avgTotalVolume;
 
-    public void setLow(String low) {
-        this.low = Double.parseDouble(low);
-    }
+    private Long iexBidPrice;
 
-    public void setPrice(String price) {
-        this.price = Double.parseDouble(price);
-    }
+    private Long iexBidSize;
 
-    public void setVolume(String volume) {
-        this.volume = Integer.parseInt(volume);
-    }
+    private Long iexAskPrice;
 
-    public void setLatestTradingDay(String latestTradingDay) {
-        this.latestTradingDay = LocalDate.parse(latestTradingDay);
-    }
+    private Long iexAskSize;
 
-    public void setPreviousClose(String previousClose) {
-        this.previousClose = Double.parseDouble(previousClose);
-    }
+    private Long marketCap;
 
-    public void setChange(String change) {
-        this.change = Double.parseDouble(change);
-    }
+    private Double peRatio;
 
-    public void setChangePercent(String changePercent) {
-        this.changePercent = changePercent;
-    }
+    private Double week52High;
 
-    public Stock(String symbol, String open, String high, String low, String price, String volume, String latestTradingDay, String previousClose, String change, String changePercent) {
-        this.symbol = symbol;
-        setOpen(open);
-        setHigh(high);
-        setLow(low);
-        setPrice(price);
-        setVolume(volume);
-        setLatestTradingDay(latestTradingDay);
-        setPreviousClose(previousClose);
-        setChange(change);
-        this.changePercent = changePercent;
-        this.savingTime = LocalDateTime.now();
-    }
+    private Double week52Low;
+
+    private Double ytdChange;
+
+    private Long lastTradeTime;
+
+    private Boolean isUSMarketOpen;
 }
