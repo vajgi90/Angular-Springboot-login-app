@@ -1,6 +1,7 @@
 package hu.flowacademy.stockmarket.config;
 
 import hu.flowacademy.stockmarket.persistance.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import javax.transaction.Transactional;
 
 @Configuration
 @Transactional
+@AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
     private UserRepository userRepository;

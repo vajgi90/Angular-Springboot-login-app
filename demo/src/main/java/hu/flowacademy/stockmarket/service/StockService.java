@@ -2,6 +2,7 @@ package hu.flowacademy.stockmarket.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hu.flowacademy.stockmarket.exception.ValidationException;
 import hu.flowacademy.stockmarket.persistance.model.Stock;
 import hu.flowacademy.stockmarket.persistance.repository.StockRepository;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ public class StockService {
 
     private final StockRepository stockRepository;
 
-    private final ObjectMapper MAPPER;
+    private final ObjectMapper mapper;
 
     private final RestTemplate restTemplate;
 
@@ -51,9 +52,17 @@ public class StockService {
         HttpEntity<String> entity = new HttpEntity<String>(headers);
         ResponseEntity<String> response = restTemplate.exchange(resourceUrl, HttpMethod.GET, entity, String.class);
         JSONObject obj = new JSONObject(response.getBody().toString());
-        Stock stock = MAPPER.readValue(obj.toString(), Stock.class);
-        stockRepository.save(stock);
-        return stock;
+        Stock stock = mapper.readValue(obj.toString(), Stock.class);
+        Optional<Stock> tmp = stockRepository.findFirstBySymbol(symbol);
+        if (!tmp.isEmpty()) {
+            Long id = tmp.orElse(null).getId();
+            stock.setId(id);
+            stockRepository.save(stock);
+            return stock;
+        } else {
+            stockRepository.save(stock);
+            return stock;
+        }
     }
 
     //DELETE

@@ -1,6 +1,7 @@
 package hu.flowacademy.stockmarket.component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import hu.flowacademy.stockmarket.service.StockMonthlyService;
 import hu.flowacademy.stockmarket.service.StockService;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
@@ -15,18 +16,20 @@ public class ScheduledDownload {
 
     private String[] stockList = {"MSFT", "TSLA", "AMZN", "GOOGL","AAPL"};
 
-    private final StockService stockService;
+    private  StockService stockService;
 
 
     public ScheduledDownload(StockService stockService) {
         this.stockService = stockService;
     }
 
-    @Scheduled(fixedDelay = 600000, initialDelay = 10)
+    @Scheduled(fixedDelay = 60000, initialDelay = 10)
     public void downloadStocks() throws JsonProcessingException, JSONException {
         for (String x : stockList) {
             stockService.stockDownloader(x);
         }
     }
 
-}
+    }
+
+
