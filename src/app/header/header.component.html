@@ -1,0 +1,8 @@
+<mat-toolbar color="warm" class="navbar">
+  <div>
+    JST Trading Platform</div>
+    <div class="buttons">
+    <span routerLink="/profile" *ngIf="isAuthenticated">Profile</span>
+    <span routerLink="/login" *ngIf="isAuthenticated" (click)="onLogout()">Logut</span>
+    </div>
+</mat-toolbar>
