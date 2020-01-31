@@ -12,6 +12,8 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptorService } from './service/auth-interceptor.service';
+import { LeftMenuComponent } from './left-menu/left-menu.component';
+import { SidenavService } from './service/sidenav.service';
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { AuthInterceptorService } from './service/auth-interceptor.service';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
-
+    LeftMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,7 @@ import { AuthInterceptorService } from './service/auth-interceptor.service';
     BrowserAnimationsModule,
     MaterialModule,
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
+  providers: [SidenavService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

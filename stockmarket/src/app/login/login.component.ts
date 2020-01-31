@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     const password = form.value.password;
 
     if (this.isLoginMode) {
-      this.loadData();
+      this.displayLoadingIndicator();
       this.auth.login(email, password).
       subscribe(
         resData => {
@@ -43,7 +43,8 @@ export class LoginComponent implements OnInit {
         }
       );
     } else {
-      this.loadData();
+      //if ág elé
+      this.displayLoadingIndicator();
       this.auth.signUp(email, password).
       subscribe(
         resData => {
@@ -68,7 +69,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-loadData() {
+displayLoadingIndicator() {
   this.showSpinner = true;
   setTimeout(() => {
       this.showSpinner = false;
