@@ -1,0 +1,52 @@
+<div class="row">
+  <mat-form-field>
+    <mat-label>Select a symbol</mat-label>
+    <select matNativeControl [(ngModel)]="symbol">
+      <option value="">Choose One</option>
+      <option *ngFor="let s of stockSymbols" [value]="s">{{s}}</option>
+    </select>
+    <br>
+    <div class="output">
+      <button mat-raised-button (click)="selectStock()">Download</button>
+    </div>
+  </mat-form-field>
+  <div>
+    <table mdbTable class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Symbol</th>
+          <th>Previous Close</th>
+          <th>Open</th>
+          <th>Highest</th>
+          <th>Lowest</th>
+          <th>Latest Price</th>
+          <th>Market Opened</th>
+          <th>Change</th>
+          <th>Change Percent</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td scope="row">{{stocks.symbol}}</td>
+        <td>{{stocks.previousClose}}</td>
+        <td>{{stocks.open}}</td>
+        <td>{{stocks.high}}</td>
+        <td>{{stocks.low}}</td>
+        <td>{{stocks.latestPrice}}</td>
+        <td>{{stocks.isUSMarketOpen}}</td>
+        <td>{{stocks.change}}</td>
+        <td>{{stocks.changePercent}}</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+<div>
+  <mat-form-field appearance="outline" color="warm">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" [(ngModel)]="amount">
+  </mat-form-field>
+</div>
+<div class="output">
+  <button mat-raised-button (click)="buyStock()">Buy</button>
+</div>
+</div>

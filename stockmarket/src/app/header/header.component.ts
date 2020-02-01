@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
       );
   }
 
+  // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy() {
     this.userSub.unsubscribe();
   }

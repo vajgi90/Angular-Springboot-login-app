@@ -1,22 +1,10 @@
 <mat-toolbar color="warm" class="navbar">
   <div>
     JST Trading Platform</div>
-  <div class="buttons">
-    <span routerLink="/profile" *ngIf="isAuthenticated">Profile</span>
-    <span routerLink="/login" *ngIf="isAuthenticated" (click)="onLogout()">Logut</span>
+    <div class="buttons">
+    <span routerLink="/login" *ngIf="isAuthenticated" (click)="onLogout()">Logout</span>
   </div>
 </mat-toolbar>
 
 
 <div>
-<mat-sidenav-container *ngIf="isAuthenticated">
-
-  <mat-sidenav>
-
-    <mat-sidenav-content>First</mat-sidenav-content>
-    <mat-sidenav-content>Second</mat-sidenav-content>
-    <mat-sidenav-content>Third</mat-sidenav-content>
-  </mat-sidenav>
-
-</mat-sidenav-container>
-</div>

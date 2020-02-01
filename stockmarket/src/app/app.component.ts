@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './service/auth.service';
-import { SidenavService } from './service/sidenav.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +9,15 @@ import { SidenavService } from './service/sidenav.service';
 })
 export class AppComponent implements OnInit {
   title = 'stockmarket';
-  public onSideNavChange: boolean;
 
-  constructor(private authService: AuthService, private sideNavService: SidenavService) {
-    this.sideNavService.sideNavState$.subscribe( res => {
-      console.log(res);
-      this.onSideNavChange = res;
-    });
+  isAuthenticated = false;
+  private userSub: Subscription;
+
+  constructor(private authService: AuthService) {
+    this.userSub = this.authService.token.subscribe(token => {
+      this.isAuthenticated = !!token;
+    }
+      );
   }
   ngOnInit() {
     this.authService.autoLogin();

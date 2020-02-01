@@ -12,8 +12,10 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptorService } from './service/auth-interceptor.service';
-import { LeftMenuComponent } from './left-menu/left-menu.component';
-import { SidenavService } from './service/sidenav.service';
+import { StockexchangeComponent } from './stockexchange/stockexchange.component';
+import { StockdataComponent } from './stockdata/stockdata.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { SidenavService } from './service/sidenav.service';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
-    LeftMenuComponent,
+    StockexchangeComponent,
+    StockdataComponent,
+    PortfolioComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,7 @@ import { SidenavService } from './service/sidenav.service';
     BrowserAnimationsModule,
     MaterialModule,
   ],
-  providers: [SidenavService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

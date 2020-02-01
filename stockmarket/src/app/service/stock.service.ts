@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { BuyData } from '../model/buydata';
 
 
 @Injectable({providedIn: 'root'})
@@ -13,12 +14,23 @@ export class StockService {
     return this.http.get('//localhost:8080/api/stocks');
   }
 
+  getAllPortfolioByEmail(email: string): Observable<any> {
+    const params = new HttpParams()
+    .set('email', email);
+    return this.http.get('//localhost:8080/api/portfolio', {params});
+  }
+
+  buyStock(buyData: BuyData): Observable<any> {
+    return this.http.post('//localhost:8080/api/portfolio/buy',
+    buyData);
+  }
+
   getSpecificStock(symbol: string): Observable<any> {
-    return this.http.get('//localhost:8080/download/' + symbol);
+    return this.http.get('//localhost:8080/api/stock/' + symbol);
   }
 
   deleteSpecificStock(symbol: string): Observable<any> {
-    return this.http.delete('//localhost:8080/stock/' + symbol);
+    return this.http.delete('//localhost:8080/stocks/' + symbol);
   }
 
 }

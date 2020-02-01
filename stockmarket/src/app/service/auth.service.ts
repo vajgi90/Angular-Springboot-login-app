@@ -28,10 +28,16 @@ export interface AuthRegisterData {
 export class AuthService {
   token = new BehaviorSubject<AuthToken>(null);
   private tokenExpirationTime: any;
+  username: string;
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  user(): string {
+    return this.username;
+  }
+
   login(username: string, password: string) {
+    this.username = username;
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: 'Basic ' + btoa('fooClientIdPassword:secret')
@@ -74,15 +80,14 @@ export class AuthService {
     if (!tokenData) {
       return;
     }
-    //Felesleges lépés
+/*     //Felesleges lépés
     const loadedData = new AuthToken(
       tokenData.access_token, tokenData.token_type,
       tokenData.refresh_token, tokenData.expires_in,
-      tokenData.scope, tokenData.jti);
-    if (loadedData.token) {
-      const expritationDuration = new Date().getTime() + loadedData.expires_in - new Date().getTime();
-      this.token.next(loadedData);
-      //this.autoLogout(expritationDuration);
+      tokenData.scope, tokenData.jti); */
+    if (tokenData.token) {
+      const expritationDuration = new Date().getTime() + tokenData.expires_in - new Date().getTime();
+      this.token.next(tokenData);
       }
   }
 
@@ -96,15 +101,6 @@ export class AuthService {
     this.tokenExpirationTime = null;
   }
 
-  //Kiszedniiiii
-  autoLogout(expirationDuration: number) {
-    console.log(expirationDuration);
-    this.tokenExpirationTime = setTimeout (
-      () => {
-        this.logout();
-      }, expirationDuration
-    );
-  }
 
   //convert/extract token
   private getToken(authResponse: AuthResponseData) {
