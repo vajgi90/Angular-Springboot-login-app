@@ -1,5 +1,11 @@
 package hu.flowacademy.stockmarket.persistance.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,13 +31,32 @@ public class Portfolio {
     private String email;
     private String stockSymbol;
     private int amount;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime buyingTime;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime sellingTime;
-    private int buyingPricePerStock;
-    private int sellingPricePerStock;
-    private int buyingPrice;
-    private int sellingPrice;
-    private int priceDifference;
-    private int priceDifferencePerStock;
+
+    private Long buyingPricePerStock;
+    private Long sellingPricePerStock;
+    private Long buyingPrice;
+    private Long sellingPrice;
+    private Long priceDifference;
+    private Long priceDifferencePerStock;
     private boolean isOpen;
+
+    public Portfolio(String email, String stockSymbol, int amount, long buyingPricePerStock) {
+        this.email = email;
+        this.stockSymbol = stockSymbol;
+        this.amount = amount;
+        this.buyingTime = LocalDateTime.now();
+        this.buyingPricePerStock = buyingPricePerStock;
+        this.buyingPrice = this.amount * this.buyingPricePerStock;
+        this.isOpen = true;
+    }
 }

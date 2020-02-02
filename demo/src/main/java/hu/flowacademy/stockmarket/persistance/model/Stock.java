@@ -1,5 +1,6 @@
 package hu.flowacademy.stockmarket.persistance.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -63,27 +64,39 @@ public class Stock {
 
     private Long latestVolume;
 
+    @JsonIgnore
+    @Transient
     private Double iexRealtimePrice;
 
+    @JsonIgnore
+    @Transient
     private Long iexRealtimeSize;
 
+    @JsonIgnore
+    @Transient
     private Long iexLastUpdated;
 
+    @JsonIgnore
     @Transient
     private Double delayedPrice;
 
+    @JsonIgnore
     @Transient
     private Long delayedPriceTime;
 
+    @JsonIgnore
     @Transient
     private Double extendedPrice;
 
+    @JsonIgnore
     @Transient
     private Double extendedChange;
 
+    @JsonIgnore
     @Transient
     private Double extendedChangePercent;
 
+    @JsonIgnore
     @Transient
     private Long extendedPriceTime;
 
@@ -98,19 +111,30 @@ public class Stock {
 
     private Long volume;
 
-
+    @JsonIgnore
+    @Transient
     private Double iexMarketPercent;
 
+    @JsonIgnore
+    @Transient
     private Long iexVolume;
 
     private Long avgTotalVolume;
 
+    @JsonIgnore
+    @Transient
     private Long iexBidPrice;
 
+    @JsonIgnore
+    @Transient
     private Long iexBidSize;
 
+    @JsonIgnore
+    @Transient
     private Long iexAskPrice;
 
+    @JsonIgnore
+    @Transient
     private Long iexAskSize;
 
     private Long marketCap;

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -26,13 +27,17 @@ public class StockResource {
                 .collect(Collectors.toList());
     }
 
-
     @GetMapping ("stocks/{name}")
-    public Optional<Stock> searchStocksByName(@PathVariable(value = "name") String name) {
+    public Optional<List<Stock>> searchStocksByName(@PathVariable(value = "name") String name) {
+        return stockService.getAllBySymbol(name);
+    }
+
+    @GetMapping ("stock/{name}")
+    public Optional<Stock> searchOneStockByName(@PathVariable(value = "name") String name) {
         return stockService.getSpecificStock(name);
     }
 
-    @DeleteMapping(value = "stock/{symbol}")
+    @DeleteMapping(value = "stocks/{symbol}")
     public void deleteUser(@PathVariable String symbol) {
         stockService.deleteStockBySymbol(symbol);
     }

@@ -1,8 +1,11 @@
 package hu.flowacademy.stockmarket.service;
 
+import hu.flowacademy.stockmarket.persistance.dto.UserRegister;
+import hu.flowacademy.stockmarket.persistance.model.Role;
 import hu.flowacademy.stockmarket.persistance.model.User;
 import hu.flowacademy.stockmarket.persistance.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.CannotSerializeTransactionException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,14 +32,26 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public User save(User user) {
+    public Optional<User> findOneByEmail(String email) {
+        return userRepository.findFirstByUsername(email);
+    }
+
+    public UserRegister save(User user) {
+        UserRegister answer = new UserRegister();
         if (user.getId() == null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         } else {
             User oldUser = userRepository.findById(user.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             user.setPassword(oldUser.getPassword());
         }
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        answer.setUsername(savedUser.getUsername());
+        if(user.getRole().equals(Role.USER)) {
+            answer.setRole(savedUser.getRole());
+        } else {
+            answer.setRole(Role.ADMIN);
+        }
+        return answer;
     }
 
     public void delete(Long id) {

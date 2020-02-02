@@ -1,5 +1,6 @@
 package hu.flowacademy.stockmarket.rest;
 
+import hu.flowacademy.stockmarket.persistance.dto.UserRegister;
 import hu.flowacademy.stockmarket.persistance.model.User;
 import hu.flowacademy.stockmarket.service.UserService;
 import lombok.AllArgsConstructor;
@@ -34,8 +35,8 @@ public class UserResource {
     }
     @PostMapping("/users")
     public ResponseEntity<?> create(@RequestBody User user) {
-        userService.save(user);
-        return new ResponseEntity(user, HttpStatus.CREATED);
+        UserRegister answer = userService.save(user);
+        return new ResponseEntity(answer, HttpStatus.CREATED);
     }
 
     @PutMapping("/users")

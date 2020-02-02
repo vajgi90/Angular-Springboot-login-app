@@ -17,10 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import java.lang.reflect.Type;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -38,6 +35,10 @@ public class StockMonthlyService {
 
     private final ObjectMapper objectMapper;
 
+    public Optional<List<StockMonthly>> findAllBySymbol(String symbol) {
+        return Optional.of(stockMonthlyRepository.findBySymbol(symbol));
+    }
+
     public List<StockMonthly> stockMonthlyDownloader(String symbol) throws JsonProcessingException, JSONException {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         String resourceUrl = "https://sandbox.iexapis.com/stable/stock/" + symbol.toUpperCase() + "/chart/1m?token=Tpk_634a471be2db41a096a3488d074c24a3";
@@ -46,9 +47,10 @@ public class StockMonthlyService {
         JSONArray obj = new JSONArray(response.getBody().toString());
         log.info(obj.toString());
         Type listType = new TypeToken<ArrayList<StockMonthly>>(){}.getType();
-        ArrayList<StockMonthly> list = gson.fromJson(obj.toString(), listType);
+//        ArrayList<StockMonthly> list = gson.fromJson(obj.toString(), listType);
         //Temporary comment below until I find solution to replace Gson
-        //List<StockMonthly> list = Arrays.asList(objectMapper.readValue(obj.toString(), StockMonthly[].class));
+        List<StockMonthly> list = Arrays.asList(objectMapper.readValue(obj.toString(), StockMonthly[].class));
+        list.forEach(x -> x.setSymbol(symbol));
         return stockMonthlyRepository.saveAll(list);
     }
 }

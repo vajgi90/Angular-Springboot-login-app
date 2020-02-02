@@ -1,5 +1,6 @@
 package hu.flowacademy.stockmarket.persistance.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,19 +25,15 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     private String password;
 
-    private String firstName;
-
-    private String lastName;
-
-    private LocalDate dateOfBirth;
+    private Long budget;
 
     @Enumerated(EnumType.STRING)
     private Role role;

@@ -2,6 +2,7 @@ package hu.flowacademy.stockmarket.persistance.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,8 @@ public class StockMonthly {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
+    private String symbol;
+
     @Column(name = "date_")
     private String date;
 
@@ -38,14 +41,19 @@ public class StockMonthly {
 
     private Integer volume;
 
+    @JsonProperty("uOpen")
     private Double uOpen;
 
+    @JsonProperty("uClose")
     private Double uClose;
 
+    @JsonProperty("uHigh")
     private Double uHigh;
 
+    @JsonProperty("uLow")
     private Double uLow;
 
+    @JsonProperty("uVolume")
     private Double uVolume;
 
     @Column(name = "change_")

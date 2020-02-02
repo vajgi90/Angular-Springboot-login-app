@@ -37,8 +37,13 @@ public class StockService {
     }
 
     //READ
+    public Optional<List<Stock>> getAllBySymbol(String symbol) {
+        return stockRepository.findAllBySymbol(symbol);
+    }
+
+    //READ
     public Optional<Stock> getSpecificStock(String symbol) {
-        return stockRepository.findFirstBySymbol(symbol);
+        return stockRepository.findFirstBySymbolOrderByIdDesc(symbol);
     }
 
     //CREATE
@@ -53,16 +58,7 @@ public class StockService {
         ResponseEntity<String> response = restTemplate.exchange(resourceUrl, HttpMethod.GET, entity, String.class);
         JSONObject obj = new JSONObject(response.getBody().toString());
         Stock stock = mapper.readValue(obj.toString(), Stock.class);
-        Optional<Stock> tmp = stockRepository.findFirstBySymbol(symbol);
-        if (!tmp.isEmpty()) {
-            Long id = tmp.orElse(null).getId();
-            stock.setId(id);
-            stockRepository.save(stock);
-            return stock;
-        } else {
-            stockRepository.save(stock);
-            return stock;
-        }
+           return stockRepository.save(stock);
     }
 
     //DELETE

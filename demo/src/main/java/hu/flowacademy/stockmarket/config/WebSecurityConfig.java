@@ -4,6 +4,7 @@ import hu.flowacademy.stockmarket.persistance.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -44,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements R
         // @formatter:off
         http.authorizeRequests()
                 .antMatchers("/", "/login", "/oauth/**", "/oauth/token/revokeById/**", "/tokens/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/users").permitAll()
                 .antMatchers("/api/users", "/api/users/**").hasAnyAuthority(Role.ADMIN.name())
                 .anyRequest().authenticated()
                 .and().formLogin().permitAll()
