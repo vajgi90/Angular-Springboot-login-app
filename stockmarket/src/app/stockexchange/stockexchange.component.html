@@ -1,7 +1,7 @@
 <div class="row">
   <mat-form-field>
     <mat-label>Select a symbol</mat-label>
-    <select matNativeControl [(ngModel)]="symbol">
+    <select matNativeControl [(ngModel)]="symbol" color="accent">
       <option value="">Choose One</option>
       <option *ngFor="let s of stockSymbols" [value]="s">{{s}}</option>
     </select>
@@ -41,7 +41,7 @@
     </table>
   </div>
 <div>
-  <mat-form-field appearance="outline" color="warm">
+  <mat-form-field appearance="outline" color="warn">
       <mat-label>Amount</mat-label>
       <input matInput type="number" [(ngModel)]="amount">
   </mat-form-field>

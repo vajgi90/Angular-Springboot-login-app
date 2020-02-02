@@ -1,1 +1,37 @@
-<p>{{portfolioData | json}}</p>
+
+<div>
+  <table mdbTable class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Symbol</th>
+        <th>Amount</th>
+        <th>BuyingTime</th>
+        <th>SellingTime</th>
+        <th>Buying Price Per Stock</th>
+        <th>Selling Price Per Stock</th>
+        <th>Buying Price</th>
+        <th>Selling Price</th>
+        <th>Price Difference</th>
+        <th>Price Difference Per Stock</th>
+        <th>Open</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let portfolioData of portfolioData">
+      <td scope="row">{{portfolioData.id}}</td>
+      <td>{{portfolioData.stockSymbol}}</td>
+      <td>{{portfolioData.amount}}</td>
+      <td>{{portfolioData.buyingTime}}</td>
+      <td>{{portfolioData.sellingTime}}</td>
+      <td>{{portfolioData.buyingPricePerStock / 100}}</td>
+      <td>{{portfolioData.sellingPricePerStock / 100}}</td>
+      <td>{{portfolioData.buyingPrice / 100}}</td>
+      <td>{{portfolioData.sellingPrice / 100}}</td>
+      <td>{{portfolioData.priceDifference / 100}}</td>
+      <td>{{portfolioData.priceDifferencePerStock / 100}}</td>
+      <td>{{portfolioData.open}}</td>
+    </tr>
+  </tbody>
+  </table>
+</div>

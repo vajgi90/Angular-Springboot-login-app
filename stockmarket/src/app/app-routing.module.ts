@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './service/auth-guard';
 import { StockexchangeComponent } from './stockexchange/stockexchange.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { StockdataComponent } from './stockdata/stockdata.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent  },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]  },
   { path: 'stock-exchange', component: StockexchangeComponent, canActivate: [AuthGuard] },
-  { path: 'portfolio', component: PortfolioComponent, canActivate: [AuthGuard] }
+  { path: 'portfolio', component: PortfolioComponent, canActivate: [AuthGuard] },
+  { path: 'stock-data', component: StockdataComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

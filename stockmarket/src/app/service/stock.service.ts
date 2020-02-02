@@ -1,5 +1,5 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpParams} from '@angular/common/http';
+import { Observable, interval } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { BuyData } from '../model/buydata';
 
@@ -20,16 +20,21 @@ export class StockService {
     return this.http.get('//localhost:8080/api/portfolio', {params});
   }
 
-  buyStock(buyData: BuyData): Observable<any> {
+  
+  getAllStockMonthlyBySymbol(symbol: string): Observable<any> {
+    return this.http.get('//localhost:8080/api/stockmonthly/' + symbol);
+  }
+
+buyStock(buyData: BuyData): Observable < any > {
     return this.http.post('//localhost:8080/api/portfolio/buy',
     buyData);
   }
 
-  getSpecificStock(symbol: string): Observable<any> {
+getSpecificStock(symbol: string): Observable < any > {
     return this.http.get('//localhost:8080/api/stock/' + symbol);
   }
 
-  deleteSpecificStock(symbol: string): Observable<any> {
+deleteSpecificStock(symbol: string): Observable < any > {
     return this.http.delete('//localhost:8080/stocks/' + symbol);
   }
 

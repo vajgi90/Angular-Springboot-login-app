@@ -45,10 +45,9 @@ export class StockexchangeComponent implements OnInit {
   email = this.authService.user();
   amount: number;
   symbol = '';
-  stockSymbols = ['MSFT', 'TSLA', 'AMZN', 'GOOGL', 'AAPL'];
+  stockSymbols = ['MSFT', 'TSLA', 'AMZN', 'GOOGL', 'AAPL', 'FB'];
   stock: any;
   stocks: Data[];
-  //displayedColumns: string[] = ['symbol', 'previousClose', 'open', 'high', 'low'];
   message: any;
 
   constructor(private stockService: StockService, private authService: AuthService) { }

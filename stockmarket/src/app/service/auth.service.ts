@@ -80,14 +80,14 @@ export class AuthService {
     if (!tokenData) {
       return;
     }
-/*     //Felesleges lépés
     const loadedData = new AuthToken(
       tokenData.access_token, tokenData.token_type,
       tokenData.refresh_token, tokenData.expires_in,
-      tokenData.scope, tokenData.jti); */
-    if (tokenData.token) {
+      tokenData.scope, tokenData.jti);
+    if (loadedData.token) {
       const expritationDuration = new Date().getTime() + tokenData.expires_in - new Date().getTime();
       this.token.next(tokenData);
+      this.autoLogout(expritationDuration);
       }
   }
 
@@ -101,6 +101,15 @@ export class AuthService {
     this.tokenExpirationTime = null;
   }
 
+  autoLogout(expirationDuration: number) {
+    console.log(expirationDuration);
+    this.tokenExpirationTime = setTimeout (
+      () => {
+        this.logout();
+      }, expirationDuration
+    );
+  }
+
 
   //convert/extract token
   private getToken(authResponse: AuthResponseData) {
@@ -109,7 +118,7 @@ export class AuthService {
       authResponse.refresh_token, authResponse.expires_in,
       authResponse.scope, authResponse.jti);
     this.token.next(token);
-    //this.autoLogout(authResponse.expires_in * 1000);
+    this.autoLogout(authResponse.expires_in * 1000);
     localStorage.setItem('tokenData', JSON.stringify(token));
   }
 

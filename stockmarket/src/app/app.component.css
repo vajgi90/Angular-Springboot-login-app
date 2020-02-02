@@ -14,3 +14,7 @@
 .output {
   color: black,
 }
+
+.side {
+  width: 160px
+}

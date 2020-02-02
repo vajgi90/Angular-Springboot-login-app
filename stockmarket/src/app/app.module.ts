@@ -15,6 +15,7 @@ import { AuthInterceptorService } from './service/auth-interceptor.service';
 import { StockexchangeComponent } from './stockexchange/stockexchange.component';
 import { StockdataComponent } from './stockdata/stockdata.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -36,6 +37,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ChartsModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]

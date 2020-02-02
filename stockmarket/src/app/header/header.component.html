@@ -2,7 +2,8 @@
   <div>
     JST Trading Platform</div>
     <div class="buttons">
-    <span routerLink="/login" *ngIf="isAuthenticated" (click)="onLogout()">Logout</span>
+    <span *ngIf="isAuthenticated">{{ now | date:'medium'}}</span>
+    <span *ngIf="isAuthenticated" (click)="onLogout()">Logout</span>
   </div>
 </mat-toolbar>
 
