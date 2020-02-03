@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       subscribe(
         resData => {
           console.log(resData);
+          console.log(form);
           this.router.navigate(['./home']);
         },
         error => {

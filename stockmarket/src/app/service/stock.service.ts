@@ -20,7 +20,7 @@ export class StockService {
     return this.http.get('//localhost:8080/api/portfolio', {params});
   }
 
-  
+
   getAllStockMonthlyBySymbol(symbol: string): Observable<any> {
     return this.http.get('//localhost:8080/api/stockmonthly/' + symbol);
   }

@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  
   title = 'stockmarket';
 
   isAuthenticated = false;
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
     }
       );
   }
+
   ngOnInit() {
     this.authService.autoLogin();
   }
