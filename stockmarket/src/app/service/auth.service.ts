@@ -10,14 +10,14 @@ import { BehaviorSubject, throwError } from 'rxjs';
 import { AuthToken } from '../model/authtoken';
 import { Router } from '@angular/router';
 
-export interface AuthResponseData {
+/* export interface AuthResponseData {
   access_token: string;
   token_type: string;
   refresh_token: string;
   expires_in: number;
   scope: string;
   jti: string;
-}
+} */
 
 export interface AuthRegisterData {
   username: string;
@@ -48,7 +48,7 @@ export class AuthService {
       .set('username', username)
       .set('password', password);
 
-    return this.http.post<AuthResponseData>(
+    return this.http.post<AuthToken>(
       'http://localhost:8080/oauth/token',
       body,
       { headers }
@@ -80,11 +80,11 @@ export class AuthService {
     if (!tokenData) {
       return;
     }
-    const loadedData = new AuthToken(
+/*     const loadedData = new AuthToken(
       tokenData.access_token, tokenData.token_type,
       tokenData.refresh_token, tokenData.expires_in,
-      tokenData.scope, tokenData.jti);
-    if (loadedData.token) {
+      tokenData.scope, tokenData.jti); */
+    if (tokenData.token) {
       const expritationDuration = new Date().getTime() + tokenData.expires_in - new Date().getTime();
       this.token.next(tokenData);
       this.autoLogout(expritationDuration);
@@ -112,13 +112,13 @@ export class AuthService {
 
 
   //convert/extract token
-  private getToken(authResponse: AuthResponseData) {
-    const token = new AuthToken(
+  private getToken(token: AuthToken) {
+/*     const token = new AuthToken(
       authResponse.access_token, authResponse.token_type,
       authResponse.refresh_token, authResponse.expires_in,
-      authResponse.scope, authResponse.jti);
+      authResponse.scope, authResponse.jti); */
     this.token.next(token);
-    this.autoLogout(authResponse.expires_in * 1000);
+    this.autoLogout(token.expires_in * 1000);
     localStorage.setItem('tokenData', JSON.stringify(token));
   }
 

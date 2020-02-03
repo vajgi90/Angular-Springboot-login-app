@@ -1,45 +1,49 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { StockService } from '../service/stock.service';
-import { AuthService } from '../service/auth.service';
-import { PortfolioData } from '../model/portfoliodata';
-import { interval, Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { StockService } from "../service/stock.service";
+import { AuthService } from "../service/auth.service";
+import { PortfolioData } from "../model/portfoliodata";
+import { interval, Subscription, timer } from "rxjs";
 
 @Component({
-  selector: 'app-portfolio',
-  templateUrl: './portfolio.component.html',
-  styleUrls: ['./portfolio.component.css']
+  selector: "app-portfolio",
+  templateUrl: "./portfolio.component.html",
+  styleUrls: ["./portfolio.component.css"]
 })
 export class PortfolioComponent implements OnInit, OnDestroy {
-  portfolioData: PortfolioData[];
+  portfolioDataOpen: PortfolioData[];
+  portfolioDataClose: PortfolioData[];
   email = this.authService.user();
-  private firstObsSubscription: Subscription;
+  private firstObsSubscriptionOpen: Subscription;
+  private firstObsSubscriptionClosed: Subscription;
 
   constructor(
     private stockService: StockService,
     private authService: AuthService
-  ) {
-/*     this.firstObsSubscription = interval(30000).subscribe((stg: any) => {this.stockService.getAllPortfolioByEmail(this.email).subscribe(data => {
-        this.portfolioData = data;
-        console.log(this.portfolioData);
-      });
-      }
-    ); */
-  }
+  ) {}
 
   ngOnInit() {
-    this.firstObsSubscription = interval(30000).subscribe((stg: any) => {this.stockService.getAllPortfolioByEmail(this.email).subscribe(data => {
-      this.portfolioData = data;
-      console.log(this.portfolioData);
+    this.firstObsSubscriptionOpen = timer(100, 10000).subscribe((stg: any) => {
+      this.stockService
+        .getAllPortfolioByEmailAndStatus(this.email, true)
+        .subscribe(data => {
+          this.portfolioDataOpen = data;
+        });
     });
-    }
-  );
-/*       this.stockService.getAllPortfolioByEmail(this.email).subscribe(data => {
-        this.portfolioData = data;
-        console.log(this.portfolioData);
-      }); */
+    this.firstObsSubscriptionClosed = timer(100, 10000).subscribe((stg: any) => {
+      this.stockService
+        .getAllPortfolioByEmailAndStatus(this.email, false)
+        .subscribe(data => {
+          this.portfolioDataClose = data;
+        });
+    });
   }
 
-    ngOnDestroy(): void {
-    this.firstObsSubscription.unsubscribe();
-  } 
+  ngOnDestroy(): void {
+    this.firstObsSubscriptionOpen.unsubscribe();
+    this.firstObsSubscriptionClosed.unsubscribe();
+  }
+
+  colorizer() {
+    this.portfolioDataOpen.forEach()
+  }
 }

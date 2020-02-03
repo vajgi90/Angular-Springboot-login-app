@@ -16,6 +16,8 @@ import { StockexchangeComponent } from './stockexchange/stockexchange.component'
 import { StockdataComponent } from './stockdata/stockdata.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ChartsModule } from 'ng2-charts';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 
@@ -37,7 +39,8 @@ import { ChartsModule } from 'ng2-charts';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ChartsModule
+    ChartsModule,
+    FontAwesomeModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]

@@ -16,3 +16,11 @@ h1 {
 .form-group {
   color: black;
 }
+
+.container {
+  width: 85%
+}
+
+.mat-h2 {
+  margin: 0;
+}

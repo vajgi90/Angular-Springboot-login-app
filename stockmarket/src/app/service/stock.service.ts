@@ -20,6 +20,14 @@ export class StockService {
     return this.http.get('//localhost:8080/api/portfolio', {params});
   }
 
+  getAllPortfolioByEmailAndStatus(email: string, isOpen: boolean): Observable<any> {
+    const params = new HttpParams()
+    .set('email', email)
+    .set('isOpen', isOpen.toString());
+
+    return this.http.get('//localhost:8080/api/portfolio/sort', {params});
+  }
+
 
   getAllStockMonthlyBySymbol(symbol: string): Observable<any> {
     return this.http.get('//localhost:8080/api/stockmonthly/' + symbol);
