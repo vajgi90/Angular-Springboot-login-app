@@ -29,13 +29,15 @@ export class PortfolioComponent implements OnInit, OnDestroy {
           this.portfolioDataOpen = data;
         });
     });
-    this.firstObsSubscriptionClosed = timer(100, 10000).subscribe((stg: any) => {
-      this.stockService
-        .getAllPortfolioByEmailAndStatus(this.email, false)
-        .subscribe(data => {
-          this.portfolioDataClose = data;
-        });
-    });
+    this.firstObsSubscriptionClosed = timer(100, 10000).subscribe(
+      (stg: any) => {
+        this.stockService
+          .getAllPortfolioByEmailAndStatus(this.email, false)
+          .subscribe(data => {
+            this.portfolioDataClose = data;
+          });
+      }
+    );
   }
 
   ngOnDestroy(): void {
@@ -43,7 +45,17 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     this.firstObsSubscriptionClosed.unsubscribe();
   }
 
-  colorizer() {
-    this.portfolioDataOpen.forEach()
+  sellStock(index: number) {
+    const id = this.portfolioDataOpen[index].id;
+    alert(id);
+    this.stockService.sellStock(id).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
+    this.stockService
+      .getAllPortfolioByEmailAndStatus(this.email, true)
+      .subscribe(data => {
+        this.portfolioDataOpen = data;
+      });
   }
 }
