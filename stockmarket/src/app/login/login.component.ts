@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { RegisterComponent } from '../register/register.component';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   authObs: Observable<any>;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -75,6 +77,13 @@ displayLoadingIndicator() {
   setTimeout(() => {
       this.showSpinner = false;
   }, 5000);
+}
+
+openDialog() {
+  this.dialog.open(RegisterComponent, {
+    height: '500px',
+    width: '320px',
+  });
 }
 
 }

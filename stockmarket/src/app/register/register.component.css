@@ -1,0 +1,10 @@
+h2 {
+  justify-content: center;
+  text-align: center;
+}
+
+.mat-dialog-content {
+  overflow-y: hidden !important;
+  justify-content: center;
+  text-align: center;
+}

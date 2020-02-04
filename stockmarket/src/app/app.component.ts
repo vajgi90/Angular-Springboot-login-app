@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { Subscription } from 'rxjs';
 
@@ -7,8 +7,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  
+export class AppComponent implements OnInit, OnDestroy {
+
   title = 'stockmarket';
 
   isAuthenticated = false;
@@ -23,5 +23,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.autoLogin();
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 }

@@ -62,7 +62,6 @@
             <th>Selling Price</th>
             <th>Price Difference</th>
             <th>Price Difference Per Stock</th>
-            <th>Open</th>
           </tr>
         </thead>
         <tbody>
@@ -76,9 +75,8 @@
           <td>{{portfolioData.sellingPricePerStock / 100}}</td>
           <td>{{portfolioData.buyingPrice / 100}}</td>
           <td>{{portfolioData.sellingPrice / 100}}</td>
-          <td >{{portfolioData.priceDifference / 100}}</td>
-          <td>{{portfolioData.priceDifferencePerStock / 100}}</td>
-          <td >{{portfolioData.open}}</td>
+          <td [ngStyle]="{'color': portfolioData.priceDifference < 0 ? 'red' : portfolioData.priceDifference > 0 ? 'green' : 'black'}">{{portfolioData.priceDifference / 100}}</td>
+          <td [ngStyle]="{'color': portfolioData.priceDifferencePerStock < 0 ? 'red' : portfolioData.priceDifferencePerStock > 0 ? 'green' : 'black'}">{{portfolioData.priceDifferencePerStock / 100}}</td>
         </tr>
       </tbody>
       </table>

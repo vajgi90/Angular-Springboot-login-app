@@ -17,6 +17,7 @@ import { StockdataComponent } from './stockdata/stockdata.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ChartsModule } from 'ng2-charts';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -31,7 +32,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     StockexchangeComponent,
     StockdataComponent,
     PortfolioComponent,
+    RegisterComponent,
   ],
+  entryComponents: [RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

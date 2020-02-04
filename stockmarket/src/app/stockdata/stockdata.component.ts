@@ -16,62 +16,41 @@ export interface GraphData {
 export class StockdataComponent implements OnInit {
   monthlyDataTSLA: StockMonthly[] = [];
   graphDataTSLA: any[];
-  graphLabelTSLA: any[];
+  graphLabel: any[];
   monthlyDataMSFT: StockMonthly[] = [];
   graphDataMSFT: any[];
-  graphLabelMSFT: any[];
   monthlyDataAAPL: StockMonthly[] = [];
   graphDataAAPL: any[];
-  graphLabelAAPL: any[];
   monthlyDataGOOGL: StockMonthly[] = [];
   graphDataGOOGL: any[];
-  graphLabelGOOGL: any[];
   monthlyDataAMZN: StockMonthly[] = [];
   graphDataAMZN: any[];
-  graphLabelAMZN: any[];
   monthlyDataFB: StockMonthly[] = [];
   graphDataFB: any[];
-  graphLabelFB: any[];
-
 
 constructor(private stockService: StockService) {}
 
 ngOnInit() {
-    this.stockService.getAllStockMonthlyBySymbol('TSLA').subscribe(data => {
-      this.monthlyDataTSLA = data;
+    this.stockService.getAllStockMonthlyBySymbol().subscribe(data => {
+      this.monthlyDataTSLA = data[0];
       this.graphDataTSLA = this.monthlyDataTSLA.map(a => a.close);
-      this.graphLabelTSLA = this.monthlyDataTSLA.map(a => a.label);
-      const lineChartTSLA = this.chartMaker('canvas1', this.graphLabelTSLA, this.graphDataTSLA, 'TESLA Monthly Closing Prices');
-    });
-    this.stockService.getAllStockMonthlyBySymbol('MSFT').subscribe(data => {
-      this.monthlyDataMSFT = data;
+      this.graphLabel = this.monthlyDataTSLA.map(a => a.label);
+      const lineChartTSLA = this.chartMaker('tsla-graph', this.graphLabel, this.graphDataTSLA, 'TESLA Monthly Closing Prices')
+      this.monthlyDataMSFT = data[1];
       this.graphDataMSFT = this.monthlyDataMSFT.map(a => a.close);
-      this.graphLabelMSFT = this.monthlyDataMSFT.map(a => a.label);
-      const lineChartMSFT = this.chartMaker('canvas2', this.graphLabelMSFT, this.graphDataMSFT, 'MICROSOFT Monthly Closing Prices');
-    });
-    this.stockService.getAllStockMonthlyBySymbol('AAPL').subscribe(data => {
-      this.monthlyDataAAPL = data;
+      const lineChartMSFT = this.chartMaker('msft-graph', this.graphLabel, this.graphDataMSFT, 'MICROSOFT Monthly Closing Prices');
+      this.monthlyDataAAPL = data[2];
       this.graphDataAAPL = this.monthlyDataAAPL.map(a => a.close);
-      this.graphLabelAAPL = this.monthlyDataAAPL.map(a => a.label);
-      const lineChartAAPL = this.chartMaker('canvas3', this.graphLabelAAPL, this.graphDataAAPL, 'APPLE Monthly Closing Prices');
-    });
-    this.stockService.getAllStockMonthlyBySymbol('GOOGL').subscribe(data => {
-      this.monthlyDataGOOGL = data;
+      const lineChartAAPL = this.chartMaker('aapl-graph', this.graphLabel, this.graphDataAAPL, 'APPLE Monthly Closing Prices');
+      this.monthlyDataGOOGL = data[3];
       this.graphDataGOOGL = this.monthlyDataGOOGL.map(a => a.close);
-      this.graphLabelGOOGL = this.monthlyDataGOOGL.map(a => a.label);
-      const lineChartGOOGL = this.chartMaker('canvas4', this.graphLabelGOOGL, this.graphDataGOOGL, 'GOOGLE Monthly Closing Prices');
-    });
-    this.stockService.getAllStockMonthlyBySymbol('AMZN').subscribe(data => {
-      this.monthlyDataAMZN = data;
+      const lineChartGOOGL = this.chartMaker('googl-graph', this.graphLabel, this.graphDataGOOGL, 'GOOGLE Monthly Closing Prices');
+      this.monthlyDataAMZN = data[4];
       this.graphDataAMZN = this.monthlyDataAMZN.map(a => a.close);
-      this.graphLabelAMZN = this.monthlyDataAMZN.map(a => a.label);
-      const lineChartAMZN = this.chartMaker('canvas5', this.graphLabelAMZN, this.graphDataAMZN, 'AMAZON Monthly Closing Prices');
-    });
-    this.stockService.getAllStockMonthlyBySymbol('FB').subscribe(data => {
-      this.monthlyDataFB = data;
+      const lineChartAMZN = this.chartMaker('amzn-graph', this.graphLabel, this.graphDataAMZN, 'AMAZON Monthly Closing Prices');
+      this.monthlyDataFB = data[5];
       this.graphDataFB = this.monthlyDataFB.map(a => a.close);
-      this.graphLabelFB = this.monthlyDataFB.map(a => a.label);
-      const lineChartFB = this.chartMaker('canvas6', this.graphLabelFB, this.graphDataFB, 'FACEBOOK Monthly Closing Prices');
+      const lineChartFB = this.chartMaker('fb-graph', this.graphLabel, this.graphDataFB, 'FACEBOOK Monthly Closing Prices');
     });
   }
 

@@ -2,33 +2,49 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, interval } from "rxjs";
 import { Injectable } from "@angular/core";
 import { BuyData } from "../model/buydata";
+import { forkJoin } from 'rxjs';
 
 @Injectable({ providedIn: "root" })
 export class StockService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
-    return this.http.get("//localhost:8080/api/stocks");
+    const allStockURL = '//localhost:8080/api/stocks';
+    return this.http.get(allStockURL);
   }
 
   getAllPortfolioByEmail(email: string): Observable<any> {
+    const portfolioByEmailURL = '/localhost:8080/api/portfolio';
     const params = new HttpParams().set("email", email);
-    return this.http.get("//localhost:8080/api/portfolio", { params });
+    return this.http.get(portfolioByEmailURL, { params });
   }
 
   getAllPortfolioByEmailAndStatus(
     email: string,
     isOpen: boolean
   ): Observable<any> {
+    const portfolioByEmailAndStatusURL = '//localhost:8080/api/portfolio/sort';
     const params = new HttpParams()
       .set("email", email)
       .set("isOpen", isOpen.toString());
 
-    return this.http.get("//localhost:8080/api/portfolio/sort", { params });
+    return this.http.get(portfolioByEmailAndStatusURL, { params });
   }
 
-  getAllStockMonthlyBySymbol(symbol: string): Observable<any> {
-    return this.http.get("//localhost:8080/api/stockmonthly/" + symbol);
+  getAllStockMonthlyBySymbol(): Observable<any> {
+  const urlTSLA = '//localhost:8080/api/stockmonthly/TSLA';
+  const urlMSFT = '//localhost:8080/api/stockmonthly/MSFT';
+  const urlAAPL = '//localhost:8080/api/stockmonthly/AAPL';
+  const urlGOOGL = '//localhost:8080/api/stockmonthly/GOOGL';
+  const urlAMZN = '//localhost:8080/api/stockmonthly/AMZN';
+  const urlFB = '//localhost:8080/api/stockmonthly/FB';
+  let tsla = this.http.get(urlTSLA);
+  let msft = this.http.get(urlMSFT);
+  let aapl = this.http.get(urlAAPL);
+  let googl = this.http.get(urlGOOGL);
+  let amzn = this.http.get(urlAMZN);
+  let fb = this.http.get(urlFB);
+  return forkJoin([tsla, msft, aapl, googl, amzn, fb]);
   }
 
   buyStock(buyData: BuyData): Observable<any> {
@@ -36,10 +52,12 @@ export class StockService {
   }
 
   sellStock(id: number): Observable<any> {
-    return this.http.get("//localhost:8080/api/portfolio/sell/" + id);
+    const sellStockURL = '//localhost:8080/api/portfolio/sell/';
+    return this.http.get(sellStockURL + id);
   }
 
   getSpecificStock(symbol: string): Observable<any> {
-    return this.http.get("//localhost:8080/api/stock/" + symbol);
+    const getSpecificStockURL = '//localhost:8080/api/stock/';
+    return this.http.get(getSpecificStockURL + symbol);
   }
 }
