@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 public class StockResource {
 
 
-    private final StockService stockService;
+    private StockService stockService;
 
-    private final StockMonthlyService stockMonthlyService;
+    private StockMonthlyService stockMonthlyService;
 
     @GetMapping("stocks")
     public Collection<Stock> americanStocks() {

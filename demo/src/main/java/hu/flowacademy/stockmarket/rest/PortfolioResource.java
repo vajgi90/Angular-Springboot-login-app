@@ -19,11 +19,19 @@ public class PortfolioResource {
 
     private PortfolioService portfolioService;
 
-    @GetMapping("portfolio")
+    @GetMapping("portfolio/")
     public ResponseEntity<?> findAll(@RequestParam(value = "email") String email) {
         Optional<List<Portfolio>> portfolio = portfolioService.findAllByEmail(email);
         return new ResponseEntity<>(portfolio, HttpStatus.OK);
     }
+
+    @GetMapping("portfolio/sort")
+    public ResponseEntity<?> findAllByEmailAndStatus(@RequestParam(value = "email") String email, @RequestParam(value = "isOpen") boolean isOpen) {
+        Optional<List<Portfolio>> portfolio = portfolioService.findByEmailAndOpen(email, isOpen);
+        return new ResponseEntity<>(portfolio, HttpStatus.OK);
+    }
+
+
 
     @PostMapping(value = "portfolio/buy")
     public Optional<Portfolio> buyStock(@RequestBody BuyingInputData data) {
