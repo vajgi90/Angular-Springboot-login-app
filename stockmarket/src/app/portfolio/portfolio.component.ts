@@ -47,7 +47,6 @@ export class PortfolioComponent implements OnInit, OnDestroy {
 
   sellStock(index: number) {
     const id = this.portfolioDataOpen[index].id;
-    alert(id);
     this.stockService.sellStock(id).subscribe(
       res => console.log(res),
       err => console.log(err)

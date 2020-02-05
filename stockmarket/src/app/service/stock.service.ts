@@ -60,4 +60,9 @@ export class StockService {
     const getSpecificStockURL = '//localhost:8080/api/stock/';
     return this.http.get(getSpecificStockURL + symbol);
   }
+
+  getSpecificStockList(symbol: string): Observable<any> {
+    const getSpecificStockListURL = '//localhost:8080/api/stocks/';
+    return this.http.get(getSpecificStockListURL + symbol);
+  }
 }

@@ -1,6 +1,7 @@
 h2 {
   justify-content: center;
   text-align: center;
+  margin-block-end: 0;
 }
 
 .mat-dialog-content {
@@ -8,3 +9,10 @@ h2 {
   justify-content: center;
   text-align: center;
 }
+
+.stg {
+  align-items: flex-end;
+}
+
+
+ 

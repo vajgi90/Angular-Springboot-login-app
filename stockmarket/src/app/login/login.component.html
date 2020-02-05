@@ -6,6 +6,7 @@
      (ngSubmit)="onSubmit(authForm)"
       *ngIf="!isLoading">
       <div class="form-group">
+        <h1>Login</h1>
         <label 
         class="mat-h2" 
         for="email">Email</label>
@@ -20,7 +21,7 @@
           email
         />
       </div>
-      <div class="form-group">
+      <div class="d-flex justify-conent-center" class="form-group">
         <label class="mat-h2"
          for="password">Password</label>
         <input
@@ -33,6 +34,9 @@
           required
           minlength="6"
         />
+      </div>
+      <div class="d-flex justify-conent-center">
+      <span class="span">{{errorMessage}}</span>
       </div>
       <div>
         <button

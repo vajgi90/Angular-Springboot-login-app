@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StockService } from '../service/stock.service';
 import { StockMonthly } from '../model/stockmonthly';
 import { Chart } from 'chart.js';
+import { Subscription } from 'rxjs';
 
 
 export interface GraphData {
@@ -13,7 +14,8 @@ export interface GraphData {
   templateUrl: './stockdata.component.html',
   styleUrls: ['./stockdata.component.css']
 })
-export class StockdataComponent implements OnInit {
+export class StockdataComponent implements OnInit, OnDestroy {
+  firstSubscription: Subscription;
   monthlyDataTSLA: StockMonthly[] = [];
   graphDataTSLA: any[];
   graphLabel: any[];
@@ -31,7 +33,7 @@ export class StockdataComponent implements OnInit {
 constructor(private stockService: StockService) {}
 
 ngOnInit() {
-    this.stockService.getAllStockMonthlyBySymbol().subscribe(data => {
+    this.firstSubscription = this.stockService.getAllStockMonthlyBySymbol().subscribe(data => {
       this.monthlyDataTSLA = data[0];
       this.graphDataTSLA = this.monthlyDataTSLA.map(a => a.close);
       this.graphLabel = this.monthlyDataTSLA.map(a => a.label);
@@ -52,6 +54,10 @@ ngOnInit() {
       this.graphDataFB = this.monthlyDataFB.map(a => a.close);
       const lineChartFB = this.chartMaker('fb-graph', this.graphLabel, this.graphDataFB, 'FACEBOOK Monthly Closing Prices');
     });
+  }
+
+  ngOnDestroy() {
+    this.firstSubscription.unsubscribe();
   }
 
 

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +17,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ChartsModule } from 'ng2-charts';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -33,6 +33,7 @@ import { RegisterComponent } from './register/register.component';
     StockdataComponent,
     PortfolioComponent,
     RegisterComponent,
+    ProfileComponent,
   ],
   entryComponents: [RegisterComponent],
   imports: [
@@ -43,7 +44,7 @@ import { RegisterComponent } from './register/register.component';
     BrowserAnimationsModule,
     MaterialModule,
     ChartsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]

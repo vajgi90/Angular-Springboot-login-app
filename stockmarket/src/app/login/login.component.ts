@@ -16,10 +16,11 @@ export class LoginComponent implements OnInit {
 
   isLoginMode = true;
   showSpinner = false;
+  errorMessage: string;
 
   authObs: Observable<any>;
 
-  constructor(private auth: AuthService, private router: Router, public dialog: MatDialog) { }
+  constructor(private auth: AuthService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -28,13 +29,15 @@ export class LoginComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
 
+  handleError(error: any) {
+    return (error.status === 400) ? this.errorMessage = 'Invalid email or password!' : '';
+  }
+
   onSubmit(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-
-    if (this.isLoginMode) {
-      this.displayLoadingIndicator();
-      this.auth.login(email, password).
+    this.displayLoadingIndicator();
+    this.auth.login(email, password).
       subscribe(
         resData => {
           console.log(resData);
@@ -42,32 +45,9 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['./home']);
         },
         error => {
-          console.log(error);
-        }
-      );
-    } else {
-      //if ág elé
-      this.displayLoadingIndicator();
-      this.auth.signUp(email, password).
-      subscribe(
-        resData => {
-          console.log(resData);
+          this.handleError(error);
         },
-        error => {
-          console.log(error);
-        }
       );
-    }
-
-    this.authObs.subscribe(
-      resData => {
-        console.log(resData);
-        this.router.navigate(['./home']);
-      },
-      error => {
-        console.log(error);
-      }
-    );
     form.reset();
   }
 
