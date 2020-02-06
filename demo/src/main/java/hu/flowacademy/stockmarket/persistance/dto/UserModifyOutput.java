@@ -1,5 +1,6 @@
 package hu.flowacademy.stockmarket.persistance.dto;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -19,11 +20,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserRegister {
+public class UserModifyOutput {
 
     private String username;
-
-    private String password;
 
     private String firstName;
 
@@ -34,6 +33,7 @@ public class UserRegister {
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate birthdate;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    private Long budget;
+
+
 }

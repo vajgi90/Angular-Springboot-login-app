@@ -31,7 +31,9 @@ public class ScheduledDownload {
     @Autowired
     private StockMonthlyService stockMonthlyService;
 
-    @Scheduled(fixedDelay = 60000, initialDelay = 10)
+
+
+    @Scheduled(fixedDelay = 10000, initialDelay = 10)
     public void downloadStocks() throws JsonProcessingException, JSONException {
         for (StockSymbol x : StockSymbol.values()) {
             stockService.stockDownloader(x.toString());

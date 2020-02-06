@@ -98,6 +98,14 @@ public class Stock {
 
     @JsonIgnore
     @Transient
+    private Double oddLotDelayedPrice;
+
+    @JsonIgnore
+    @Transient
+    private Long oddLotDelayedPriceTime;
+
+    @JsonIgnore
+    @Transient
     private Long extendedPriceTime;
 
     private Double previousClose;
