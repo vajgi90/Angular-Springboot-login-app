@@ -38,3 +38,7 @@ h1 {
 .label {
   justify-content: center;
 }
+
+.span {
+  color: red;
+}

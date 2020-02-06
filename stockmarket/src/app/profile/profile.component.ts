@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) {}
   user: UserUpdate = {} as any;
 
   email: string;
@@ -64,18 +64,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   deleteUser() {
-    this.authService.deleteUser().subscribe(data => {
-      this.handleResponse(data);
+    this.authService.deleteUser(this.email).subscribe(data => {
+      this.authService.logout();
     }, error => {
       this.handleError(error);
     });
-  }
-
-  handleResponse(response: any) {
-    if (response.status === 204) {
-      this.router.navigate(['/login']);
-    }
-    this.errorMessage = 'Delete is not complete!';
   }
 
   handleError(error: Error) {

@@ -56,7 +56,7 @@ displayLoadingIndicator() {
   this.showSpinner = true;
   setTimeout(() => {
       this.showSpinner = false;
-  }, 5000);
+  }, 2000);
 }
 
 openDialog() {

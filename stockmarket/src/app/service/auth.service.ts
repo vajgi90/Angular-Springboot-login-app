@@ -117,11 +117,11 @@ export class AuthService {
     return this.http.put(getUserUrl, user, {params});
   }
 
-  deleteUser() {
+  deleteUser(email: string) {
     const deleteUserUrl = 'http://localhost:8080/api/user';
     const params = new HttpParams()
-    .set('email', this.username);
-    return this.http.delete(deleteUserUrl);
+    .set('email', email);
+    return this.http.delete(deleteUserUrl, {params});
   }
 
   autoLogout(expirationDuration: number) {
