@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.EnumSet;
 import java.util.List;
 
 @Component
@@ -24,28 +25,22 @@ import java.util.List;
 @Slf4j
 public class ScheduledDownload {
 
-    private StockSymbol[] stockList2 = {StockSymbol.MSFT, StockSymbol.TSLA, StockSymbol.AMZN, StockSymbol.GOOGL,StockSymbol.AAPL, StockSymbol.FB};
-
-    private String[] stockList = {"MSFT", "TSLA", "AMZN", "GOOGL", "AAPL"};
-
     @Autowired
     private StockService stockService;
 
     @Autowired
     private StockMonthlyService stockMonthlyService;
 
-
-
     @Scheduled(fixedDelay = 60000, initialDelay = 10)
     public void downloadStocks() throws JsonProcessingException, JSONException {
-        for (StockSymbol x : stockList2) {
-            Stock stock = stockService.stockDownloader(x.toString());
+        for (StockSymbol x : StockSymbol.values()) {
+            stockService.stockDownloader(x.toString());
         }
     }
 
     @Scheduled(fixedDelay = 7200000, initialDelay = 10)
     public void downloadMonthlyStocks() throws JsonProcessingException, JSONException {
-        for (StockSymbol x : stockList2) {
+        for (StockSymbol x : StockSymbol.values()) {
             stockMonthlyService.stockMonthlyDownloader(x.toString());
         }
     }
