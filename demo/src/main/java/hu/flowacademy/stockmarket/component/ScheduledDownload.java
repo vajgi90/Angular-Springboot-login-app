@@ -24,10 +24,6 @@ import java.util.List;
 @Slf4j
 public class ScheduledDownload {
 
-    private StockSymbol[] stockList2 = {StockSymbol.MSFT, StockSymbol.TSLA, StockSymbol.AMZN, StockSymbol.GOOGL,StockSymbol.AAPL, StockSymbol.FB};
-
-    private String[] stockList = {"MSFT", "TSLA", "AMZN", "GOOGL", "AAPL"};
-
     @Autowired
     private StockService stockService;
 
@@ -36,16 +32,16 @@ public class ScheduledDownload {
 
 
 
-    @Scheduled(fixedDelay = 60000, initialDelay = 10)
+    @Scheduled(fixedDelay = 10000, initialDelay = 10)
     public void downloadStocks() throws JsonProcessingException, JSONException {
-        for (StockSymbol x : stockList2) {
-            Stock stock = stockService.stockDownloader(x.toString());
+        for (StockSymbol x : StockSymbol.values()) {
+            stockService.stockDownloader(x.toString());
         }
     }
 
     @Scheduled(fixedDelay = 7200000, initialDelay = 10)
     public void downloadMonthlyStocks() throws JsonProcessingException, JSONException {
-        for (StockSymbol x : stockList2) {
+        for (StockSymbol x : StockSymbol.values()) {
             stockMonthlyService.stockMonthlyDownloader(x.toString());
         }
     }
