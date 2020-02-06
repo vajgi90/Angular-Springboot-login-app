@@ -3,6 +3,7 @@ import { StockService} from '../service/stock.service';
 import { AuthService } from '../service/auth.service';
 import { BuyData } from '../model/buydata';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 export interface Data {
@@ -52,7 +53,7 @@ export class StockexchangeComponent implements OnInit {
   message: any;
   subs: Subscription;
 
-  constructor(private stockService: StockService, private authService: AuthService) { }
+  constructor(private stockService: StockService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -61,7 +62,9 @@ export class StockexchangeComponent implements OnInit {
     const data = new BuyData(this.email, this.amount, this.selectedValue);
     console.log(data);
     this.stockService.buyStock(data).subscribe(
-      res => console.log(res),
+      res => {
+        this.router.navigate(['portfolio']);
+      },
       err => console.log(err)
     );
   }
@@ -75,7 +78,5 @@ export class StockexchangeComponent implements OnInit {
     });
     //this.subs.unsubscribe();
   }
-
-
 
 }
