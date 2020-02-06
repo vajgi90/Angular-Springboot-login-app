@@ -29,7 +29,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
           this.portfolioDataOpen = data;
         });
     });
-    this.firstObsSubscriptionClosed = timer(100, 10000).subscribe(
+    this.firstObsSubscriptionClosed = timer(100, 1000).subscribe(
       (stg: any) => {
         this.stockService
           .getAllPortfolioByEmailAndStatus(this.email, false)
@@ -56,5 +56,9 @@ export class PortfolioComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.portfolioDataOpen = data;
       });
+  }
+
+  deleteProfile() {
+    
   }
 }

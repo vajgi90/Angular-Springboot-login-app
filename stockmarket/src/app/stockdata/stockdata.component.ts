@@ -37,7 +37,7 @@ ngOnInit() {
       this.monthlyDataTSLA = data[0];
       this.graphDataTSLA = this.monthlyDataTSLA.map(a => a.close);
       this.graphLabel = this.monthlyDataTSLA.map(a => a.label);
-      const lineChartTSLA = this.chartMaker('tsla-graph', this.graphLabel, this.graphDataTSLA, 'TESLA Monthly Closing Prices')
+      const lineChartTSLA = this.chartMaker('tsla-graph', this.graphLabel, this.graphDataTSLA, 'TESLA Monthly Closing Prices');
       this.monthlyDataMSFT = data[1];
       this.graphDataMSFT = this.monthlyDataMSFT.map(a => a.close);
       const lineChartMSFT = this.chartMaker('msft-graph', this.graphLabel, this.graphDataMSFT, 'MICROSOFT Monthly Closing Prices');

@@ -3,9 +3,11 @@
     <div class="col-xs-12 col-md-6 col-md-offset-3 my-auto">
       <form class="container center_div" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
         <div class="form-group">
-          <label class="mat-h2" for="budget">Budget:
-            {{budget / 100 | currency: 'USD'}}
-          </label><br>
+          <mat-card>
+            <label class="mat-h2" for="budget">Budget:
+              {{budget / 100 | currency: 'USD'}}
+            </label><br>
+          </mat-card>
           <label class="mat-h2" for="email">Email</label>
           <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" placeholder="Email"
             required email />
@@ -32,6 +34,9 @@
         <div>
           <button class="btn btn-dark" type="submit" [disabled]="!authForm.valid">
             Refresh
+          </button> | 
+          <button class="btn btn-dark" type="button" (click)="deleteProfile()">
+            Delete Profile
           </button>
         </div>
       </form>

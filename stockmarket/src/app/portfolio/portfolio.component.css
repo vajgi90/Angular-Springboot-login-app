@@ -12,3 +12,11 @@ th, td {
   text-align: center;
   vertical-align: middle;
 }
+
+.row{
+  height:50vh;
+}
+
+.container{
+  height: 100vh ;
+}

@@ -34,3 +34,7 @@ h1 {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+.label {
+  justify-content: center;
+}

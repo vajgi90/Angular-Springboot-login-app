@@ -12,9 +12,10 @@
 }
 
 .output {
-  color: black,
+  color: black;
 }
 
 .side {
-  width: 160px
+  width: 160px;
+  font-size: 16px
 }

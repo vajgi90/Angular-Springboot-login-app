@@ -3,10 +3,12 @@
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer mode="side" opened class="side" *ngIf="isAuthenticated">
       <mat-nav-list>
+        <a routerLink="/home" mat-list-item> Home </a>
         <a routerLink="/profile" mat-list-item> Profile </a>
         <a routerLink="/stock-exchange" mat-list-item> StockExchange </a>
-        <a routerLink="/stock-data" mat-list-item> StockData </a>
         <a routerLink="/portfolio" mat-list-item> Portfolio </a>
+        <a routerLink="/stock-data" mat-list-item> StockData </a>
+        <a routerLink="/corporate-info" mat-list-item> Corporate Information </a>
       </mat-nav-list>
     </mat-drawer>
     <mat-drawer-content class="content">

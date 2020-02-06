@@ -18,6 +18,8 @@ import { ChartsModule } from 'ng2-charts';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CorporateInfoComponent } from './corporate-info/corporate-info.component';
+import { CorporateSpecificComponent } from './corporate-specific/corporate-specific.component';
 
 
 
@@ -34,6 +36,8 @@ import { ProfileComponent } from './profile/profile.component';
     PortfolioComponent,
     RegisterComponent,
     ProfileComponent,
+    CorporateInfoComponent,
+    CorporateSpecificComponent,
   ],
   entryComponents: [RegisterComponent],
   imports: [

@@ -7,6 +7,7 @@ import { StockexchangeComponent } from './stockexchange/stockexchange.component'
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { StockdataComponent } from './stockdata/stockdata.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CorporateInfoComponent } from './corporate-info/corporate-info.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'stock-exchange', component: StockexchangeComponent, canActivate: [AuthGuard] },
   { path: 'portfolio', component: PortfolioComponent, canActivate: [AuthGuard] },
   { path: 'stock-data', component: StockdataComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'corporate-info', component: CorporateInfoComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

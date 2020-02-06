@@ -10,7 +10,6 @@ import { UserUpdate } from '../model/userupdate';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-
   constructor(private authService: AuthService) {}
   user: UserUpdate = {} as any;
 
@@ -43,19 +42,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.user.lastName = form.value.lastName;
     this.user.birthdate = form.value.birthdate;
     console.log(this.user);
-    this.secondObsSubsription = this.authService.updateUser(this.user).subscribe(
-      resData => {
-        console.log(resData);
-      },
-      error => {
-        console.log(this.errorMessage);
-      }
-    );
+    this.secondObsSubsription = this.authService
+      .updateUser(this.user)
+      .subscribe(
+        resData => {
+          console.log(resData);
+        },
+        error => {
+          console.log(this.errorMessage);
+        }
+      );
+    //this.secondObsSubsription.unsubscribe();
   }
 
   ngOnDestroy() {
     this.firstObsSubscription.unsubscribe();
-    this.secondObsSubsription.unsubscribe();
+    //this.secondObsSubsription.unsubscribe();
   }
-  
 }

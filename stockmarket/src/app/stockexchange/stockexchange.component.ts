@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StockService} from '../service/stock.service';
 import { AuthService } from '../service/auth.service';
 import { BuyData } from '../model/buydata';
+import { Subscription } from 'rxjs';
 
 
 export interface Data {
@@ -44,11 +45,12 @@ export interface Data {
 export class StockexchangeComponent implements OnInit {
   email = this.authService.user();
   amount: number;
-  symbol = '';
+  selectedValue: string;
   stockSymbols = ['MSFT', 'TSLA', 'AMZN', 'GOOGL', 'AAPL', 'FB'];
   stock: any;
-  stocks: Data[];
+  stocks: Data[] = [];
   message: any;
+  subs: Subscription;
 
   constructor(private stockService: StockService, private authService: AuthService) { }
 
@@ -56,7 +58,7 @@ export class StockexchangeComponent implements OnInit {
   }
 
   buyStock() {
-    const data = new BuyData(this.email, this.amount, this.symbol);
+    const data = new BuyData(this.email, this.amount, this.selectedValue);
     console.log(data);
     this.stockService.buyStock(data).subscribe(
       res => console.log(res),
@@ -65,11 +67,13 @@ export class StockexchangeComponent implements OnInit {
   }
 
   selectStock() {
-    this.stockService.getSpecificStock(this.symbol)
+    this.subs = this.stockService.getSpecificStock(this.selectedValue)
     .subscribe(data => {
       this.stocks = data;
+      console.log(this.stocks);
       //this.stocks.push(this.stock);
     });
+    //this.subs.unsubscribe();
   }
 
 
