@@ -117,6 +117,13 @@ export class AuthService {
     return this.http.put(getUserUrl, user, {params});
   }
 
+  deleteUser() {
+    const deleteUserUrl = 'http://localhost:8080/api/user';
+    const params = new HttpParams()
+    .set('email', this.username);
+    return this.http.delete(deleteUserUrl);
+  }
+
   autoLogout(expirationDuration: number) {
     console.log(expirationDuration);
     this.tokenExpirationTime = setTimeout(() => {

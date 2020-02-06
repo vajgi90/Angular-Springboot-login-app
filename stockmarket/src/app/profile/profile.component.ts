@@ -3,6 +3,8 @@ import { AuthService } from '../service/auth.service';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { UserUpdate } from '../model/userupdate';
+import { HttpResponse } from '@angular/common/http/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +12,7 @@ import { UserUpdate } from '../model/userupdate';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
   user: UserUpdate = {} as any;
 
   email: string;
@@ -20,6 +22,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   birthdate: Date;
   budget: number;
   errorMessage: any;
+  deleteResponse: any;
 
   private firstObsSubscription: Subscription;
   private secondObsSubsription: Subscription;
@@ -52,11 +55,30 @@ export class ProfileComponent implements OnInit, OnDestroy {
           console.log(this.errorMessage);
         }
       );
-    //this.secondObsSubsription.unsubscribe();
+    // this.secondObsSubsription.unsubscribe();
   }
 
   ngOnDestroy() {
     this.firstObsSubscription.unsubscribe();
-    //this.secondObsSubsription.unsubscribe();
+    // this.secondObsSubsription.unsubscribe();
+  }
+
+  deleteUser() {
+    this.authService.deleteUser().subscribe(data => {
+      this.handleResponse(data);
+    }, error => {
+      this.handleError(error);
+    });
+  }
+
+  handleResponse(response: any) {
+    if (response.status === 204) {
+      this.router.navigate(['/login']);
+    }
+    this.errorMessage = 'Delete is not complete!';
+  }
+
+  handleError(error: Error) {
+    this.errorMessage = 'An error occured!';
   }
 }

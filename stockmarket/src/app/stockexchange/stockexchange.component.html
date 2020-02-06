@@ -50,20 +50,18 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-3">
-        <form #authForm="ngForm">
+    <div class="col-4">
         <div class="input-group input-group-sm sm-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-mb">Amount</span>
           </div>
-          <input type="number" class="form-control" id="amount" aria-label="Amount" aria-describedby="inputGroup-sizing-sm"
-            [(ngModel)]="amount" required>
+          <input type="number" id="amount" aria-label="Amount" aria-describedby="inputGroup-sizing-sm"
+            [(ngModel)]="amount">
         </div>
-      <br>
+        <br>
       <div class="output">
-        <button mat-raised-button (click)="buyStock()" [disabled]="!authForm.valid">Buy</button>
+        <button mat-raised-button (click)="buyStock()">Buy</button>
       </div>
-      </form>
     </div>
   </div>
 </div>

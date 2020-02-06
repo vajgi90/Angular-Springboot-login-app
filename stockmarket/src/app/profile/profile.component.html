@@ -35,9 +35,10 @@
           <button class="btn btn-dark" type="submit" [disabled]="!authForm.valid">
             Refresh
           </button> | 
-          <button class="btn btn-dark" type="button" (click)="deleteProfile()">
+          <button class="btn btn-dark" type="button" (click)="deleteUser()">
             Delete Profile
           </button>
+          {{errorMessage}}
         </div>
       </form>
     </div>
