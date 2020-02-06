@@ -11,13 +11,11 @@ import java.util.Optional;
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long> {
 
-    //@Query("select s from Stock s where s.symbol = ?1 order by s.id desc limit 1")
-    public Optional<Stock> findFirstBySymbolOrderByIdDesc(String symbol);
+    Optional<Stock> findFirstBySymbolOrderByIdDesc(String symbol);
 
-
-    public void deleteBySymbol (String symbol);
+    void deleteBySymbol(String symbol);
 
     @Query("select s from Stock s where s.symbol = ?1 order by s.id desc")
-    public Optional<List<Stock>> findAllBySymbol(String symbol);
+    Optional<List<Stock>> findAllBySymbol(String symbol);
 
 }

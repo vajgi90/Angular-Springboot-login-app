@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface StockMonthlyRepository extends JpaRepository<StockMonthly, Long> {
 
-    public List<StockMonthly> findBySymbol(String symbol);
+    List<StockMonthly> findBySymbol(String symbol);
 }
