@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -40,7 +41,7 @@ public class PortfolioService {
         return Optional.of(list);
     }
 
-    public Optional<List<Portfolio>> findByEmailAndOpen(String email, boolean isOpen) {
+/*    public Optional<List<Portfolio>> findByEmailAndOpen(String email, boolean isOpen) {
         List<Portfolio> list = portfolioRepository.findByEmail(email);
         for (Portfolio pf: list) {
             if(pf.isOpen()) {
@@ -52,6 +53,18 @@ public class PortfolioService {
             }
         }
         return Optional.of(portfolioRepository.findByEmailAndOpen(email, isOpen));
+    }*/
+
+    public Optional<List<Portfolio>> findByEmailAndOpen(String email, boolean isOpen) {
+        return Optional.of(
+                portfolioRepository.findByEmailAndOpen(email, isOpen).stream().peek(pf -> {
+                    Stock stock = stockService.getSpecificStock(pf.getStockSymbol()).orElseThrow();
+                    Double temp = stock.getLatestPrice() * 100;
+                    Long currentPricePerStock = temp.longValue();
+                    pf.setPriceDifferencePerStock(currentPricePerStock - pf.getBuyingPricePerStock());
+                    pf.setPriceDifference((currentPricePerStock * pf.getAmount()) - pf.getBuyingPrice());
+                }).collect(Collectors.toList())
+        );
     }
 
     public List<Portfolio> findBySymbol(String symbol) {
