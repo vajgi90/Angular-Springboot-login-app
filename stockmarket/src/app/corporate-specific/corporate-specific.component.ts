@@ -82,7 +82,7 @@ export class CorporateSpecificComponent implements OnInit, OnChanges {
         'Facebook, Inc. operates as a social networking company worldwide. The company engages in the development of social media applications for people to connect through mobile devices, personal computers, and other surfaces. It enables users to share opinions, ideas, photos, videos, and other activities online. The firm\'s products include Facebook, Instagram, Messenger, WhatsApp, and Oculus. The company was founded by Mark Elliot Zuckerberg, Dustin Moskovitz, Chris R. Hughes, Andrew McCollum, and Eduardo P. Saverin on February 4, 2004 and is headquartered in Menlo Park, CA.',
       industry: 'Internet Software/Services',
       sector: 'Technology Services',
-      website: 'http://www.facebook.com',
+      website: 'https://about.fb.com/company-info/',
       ceo: 'Mark Elliot Zuckerberg',
       employees: 44942
     }

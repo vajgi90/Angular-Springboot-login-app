@@ -23,7 +23,6 @@
             <tr>
               <th>Symbol</th>
               <th>Previous Close</th>
-              <th>Latest Update</th>
               <th>Yearly Lowest</th>
               <th>Yearly Highest</th>
               <th>Latest Price</th>
@@ -36,10 +35,9 @@
             <tr>
               <td scope="row">{{stocks?.symbol}}</td>
               <td>{{stocks?.previousClose}}</td>
-              <td>{{stocks?.lastTradeTime | date:'medium'}}</td>
               <td>{{stocks?.week52Low}}</td>
               <td>{{stocks?.week52High}}</td>
-              <td>{{stocks?.latestPrice}}</td>
+              <td>{{lastPrice}}</td>
               <td>{{stocks?.isUSMarketOpen}}</td>
               <td>{{stocks?.change}}</td>
               <td>{{stocks?.changePercent}}</td>
@@ -62,6 +60,11 @@
       <div class="output">
         <button mat-raised-button (click)="buyStock()">Buy</button>
       </div>
+      </div>
     </div>
+  </div>
+  <div class="row w-100 justify-content-center">
+    <div class="col-12">
+    <canvas id="graph" style="display: block; height: 600px">{{lineChart}}</canvas> 
   </div>
 </div>

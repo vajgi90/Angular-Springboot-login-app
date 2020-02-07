@@ -20,3 +20,10 @@ th, td {
 .container{
   height: 100vh ;
 }
+
+p {
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+  justify-content: center;
+  text-align: center;
+}
