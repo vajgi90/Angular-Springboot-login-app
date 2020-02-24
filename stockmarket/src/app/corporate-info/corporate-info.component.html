@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row w-100 justify-content-center align-items-center">
+    <mat-label>Select a symbol</mat-label><br>
+    <div class="row w-100"></div>
+    <select class="form-control form-control-sm" [(ngModel)]="symbol" [ngModelOptions]="{standalone: true}">
+      <option value="MSFT">MICROSOFT</option>
+      <option value="TSLA">TESLA</option>
+      <option value="AMZN">AMAZON</option>
+      <option value="GOOGL">GOOGL</option>
+      <option value="AAPL">APPLE</option>
+      <option value="FB">FACEBOOK</option>
+    </select>
+  </div>
+  <app-corporate-specific [symbol]="symbol"></app-corporate-specific>
+</div>

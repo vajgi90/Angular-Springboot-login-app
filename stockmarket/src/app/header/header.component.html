@@ -1,0 +1,11 @@
+<mat-toolbar class="navbar">
+  <div>
+    JST Trading Platform</div>
+    <div class="buttons">
+    <span *ngIf="isAuthenticated">{{ now | date: 'y/MM/dd h:mm:ss a'}}</span>
+    <span *ngIf="isAuthenticated" (click)="onLogout()">Logout</span>
+  </div>
+</mat-toolbar>
+
+
+<div>

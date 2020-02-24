@@ -1,0 +1,22 @@
+.row {
+  padding-top: 50px;
+  padding-left: 100px;
+  color: black;
+}
+
+table {
+  text-align: center !important
+}
+
+input#amount {
+  width: 60px;
+}
+
+
+ #bottom {
+  height: calc(100%)/2;
+ }
+
+ #up {
+  height: calc(100%)/2;
+ }

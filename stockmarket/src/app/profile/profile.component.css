@@ -1,0 +1,44 @@
+h1 {
+  font-size: 1.5rem;
+  text-align: center;
+  color: black;
+}
+
+.form-control {
+  font-size: 1.5rem;
+}
+
+.form-group {
+  color: black;
+  margin-bottom: 0.5rem;
+}
+
+.container {
+  width: 85%;
+}
+
+.mat-h2 {
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.form-control:focus{
+  border-color: #cccccc;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.label {
+  justify-content: center;
+}
+
+.span {
+  color: red;
+}

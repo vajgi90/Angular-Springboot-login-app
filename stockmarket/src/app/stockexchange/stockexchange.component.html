@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <form>
+        <mat-label>Select a symbol</mat-label>
+        <select (change)="selectStock()" class="form-control form-control-sm" [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}">
+          <option value="MSFT">MICROSOFT</option>
+          <option value="TSLA">TESLA</option>
+          <option value="AMZN">AMAZON</option>
+          <option value="GOOGL">GOOGL</option>
+          <option value="AAPL">APPLE</option>
+          <option value="FB">FACEBOOK</option>
+        </select>
+      </form>
+    </div>
+    <div class="col-9"></div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <table mdbTable class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th>Symbol</th>
+              <th>Previous Close</th>
+              <th>Yearly Lowest</th>
+              <th>Yearly Highest</th>
+              <th>Latest Price</th>
+              <th>Market Opened</th>
+              <th>Change</th>
+              <th>Change Percent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row">{{stocks?.symbol}}</td>
+              <td>{{stocks?.previousClose}}</td>
+              <td>{{stocks?.week52Low}}</td>
+              <td>{{stocks?.week52High}}</td>
+              <td>{{lastPrice}}</td>
+              <td>{{stocks?.isUSMarketOpen}}</td>
+              <td>{{stocks?.change}}</td>
+              <td>{{stocks?.changePercent}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+        <div class="input-group input-group-sm sm-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-mb">Amount</span>
+          </div>
+          <input type="number" id="amount" aria-label="Amount" aria-describedby="inputGroup-sizing-sm"
+            [(ngModel)]="amount">
+        </div>
+        <br>
+      <div class="output">
+        <button mat-raised-button (click)="buyStock()">Buy</button>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="row w-100 justify-content-center">
+    <div class="col-12">
+    <canvas id="graph" style="display: block; height: 600px">{{lineChart}}</canvas> 
+  </div>
+</div>

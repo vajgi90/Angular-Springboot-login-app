@@ -1,0 +1,79 @@
+
+  <div class="d-flex justify-content-end">
+  <button mat-button class="close-icon" [mat-dialog-close]="true">
+    x
+  </button>
+  </div>
+  
+  <mat-dialog-content>
+    <h2 mat-dialog-title>Sign Up </h2>
+  <mat-card class="box">
+
+    <form class="example-form" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput
+          placeholder="Email" 
+          type="email"
+          required
+          ngModel
+          name="email"
+          email>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <input 
+          matInput 
+          placeholder="Password" 
+          type="password"
+          name="password"
+          required
+          ngModel
+          minlength="6">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <input matInput 
+          placeholder="Firstname" 
+          type="text"
+          name="firstName"
+          ngModel
+          required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <input matInput 
+          placeholder="Lastname"
+          type="text"
+          name="lastName"
+          ngModel
+          required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <input matInput
+          placeholder="Date of Birth"
+          type="date"
+          name="birthdate"
+          ngModel
+          required>
+        </mat-form-field> 
+
+        <div class="d-flex justify-conent-center" style="color: rgb(236, 64, 122);">
+          <span class="span">{{errorMessage}}</span>
+        </div>
+      </mat-card-content>
+
+      <mat-dialog-actions>
+        <button mat-stroked-button color="accent" class="btn-block" type="submit"
+        [disabled]="!authForm.valid">Register</button>
+      </mat-dialog-actions>
+      
+      <mat-spinner *ngIf="showSpinner" class="spinner" [diameter]="50"></mat-spinner>
+    </form>
+  </mat-card>
+  {{error}}
+</mat-dialog-content>
+
+

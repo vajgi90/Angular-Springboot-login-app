@@ -1,0 +1,18 @@
+body {
+  height: auto;
+  width: auto
+}
+
+img {
+  opacity: 0.8;
+}
+
+h1 {
+  color: black;
+  padding-top: 30px
+}
+
+span {
+  color: red;
+  padding-top: 0;
+}
