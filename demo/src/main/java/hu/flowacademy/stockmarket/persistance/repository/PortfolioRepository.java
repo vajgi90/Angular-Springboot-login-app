@@ -11,11 +11,11 @@ import java.util.Optional;
 @Repository
 public interface PortfolioRepository extends JpaRepository<Portfolio, Long> {
 
-    public List<Portfolio> findByEmail(String email);
+    List<Portfolio> findByEmail(String email);
 
-    public List<Portfolio> findByStockSymbol(String symbol);
+    List<Portfolio> findByStockSymbol(String symbol);
 
     @Query("SELECT p FROM  Portfolio p WHERE p.email=?1 AND p.isOpen=?2")
-    public List<Portfolio> findByEmailAndOpen(String email, boolean isOpen);
+    List<Portfolio> findByEmailAndOpen(String email, boolean isOpen);
 
 }
