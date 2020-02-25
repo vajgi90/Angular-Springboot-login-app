@@ -41,9 +41,23 @@ public class PortfolioService {
         return Optional.of(list);
     }
 
+    public Optional<List<Portfolio>> findByEmailAndClosed(String email, boolean isOpen) {
+/*        List<Portfolio> list = portfolioRepository.findByEmail(email);
+        for (Portfolio pf: list) {
+            if(pf.isOpen()) {
+                Stock stock = stockService.getSpecificStock(pf.getStockSymbol()).orElseThrow();
+                Double temp = stock.getLatestPrice() * 100;
+                Long currentPricePerStock = temp.longValue();
+                pf.setPriceDifferencePerStock(currentPricePerStock - pf.getBuyingPricePerStock());
+                pf.setPriceDifference((currentPricePerStock * pf.getAmount()) - pf.getBuyingPrice());
+            }
+        }*/
+        return Optional.of(portfolioRepository.findByEmailAndOpen(email, isOpen));
+    }
+
     public Optional<List<Portfolio>> findByEmailAndOpen(String email, boolean isOpen) {
         return Optional.of(
-                portfolioRepository.findByEmailAndOpen(email, isOpen).stream().peek(pf -> {
+                portfolioRepository.findByEmailAndOpen(email, isOpen).stream().filter(x -> x.isOpen()).peek(pf -> {
                     Stock stock = stockService.getSpecificStock(pf.getStockSymbol()).orElseThrow();
                     Double temp = stock.getLatestPrice() * 100;
                     Long currentPricePerStock = temp.longValue();

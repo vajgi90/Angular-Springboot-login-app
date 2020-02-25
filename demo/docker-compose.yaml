@@ -4,10 +4,10 @@ services:
   flow-percona:
     image: "percona:ps-8.0.16-7"
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: pwd
-      MYSQL_DATABASE: stockmarket
-      MYSQL_USER: vajgi90
-      MYSQL_PASSWORD: Vt901107
+      MYSQL_DATABASE: stockmarket_db
+      MYSQL_USER: sm_user
+      MYSQL_PASSWORD: 123456
 

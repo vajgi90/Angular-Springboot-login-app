@@ -31,7 +31,7 @@ public class UserResource {
     @GetMapping("/users/{id}")
     public ResponseEntity<?> findOne(@PathVariable Long id) {
         Optional<User> user = userService.findOne(id);
-        if(user.isEmpty()) {
+        if (user.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(user, HttpStatus.OK);
@@ -42,7 +42,7 @@ public class UserResource {
     @GetMapping("/user")
     public ResponseEntity<?> findOne(@RequestParam(value = "email") String email) {
         Optional<UserModifyOutput> user = userService.findOneByEmailToModify(email);
-        if(user.isEmpty()) {
+        if (user.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(user, HttpStatus.OK);
@@ -63,10 +63,13 @@ public class UserResource {
     }
 
     @DeleteMapping("/user")
-    public ResponseEntity<Void> create(@RequestParam(value = "email") String email) {
-        User user = userService.findOneByEmail(email).orElseThrow(NoSuchElementException::new);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> delete(@RequestParam(value = "email") String email) {
+        if(userService.findOneByEmail(email).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            userService.deleteByUsername(email);
+            return ResponseEntity.noContent().build();
+
+        }
     }
-
 }
-

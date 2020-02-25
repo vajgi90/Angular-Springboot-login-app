@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -58,7 +59,8 @@ public class StockService {
         ResponseEntity<String> response = restTemplate.exchange(resourceUrl, HttpMethod.GET, entity, String.class);
         JSONObject obj = new JSONObject(response.getBody().toString());
         Stock stock = mapper.readValue(obj.toString(), Stock.class);
-           return stockRepository.save(stock);
+        stock.setDownloadTime(LocalDateTime.now());
+        return stockRepository.save(stock);
     }
 
     //DELETE

@@ -87,4 +87,6 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public void deleteByUsername(String username) { userRepository.deleteByUsername(username);}
+
 }
