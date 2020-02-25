@@ -22,7 +22,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.firstObsSubscriptionOpen = timer(100, 10000).subscribe((stg: any) => {
+    this.firstObsSubscriptionOpen = timer(100, 1000).subscribe((stg: any) => {
       this.stockService
         .getAllPortfolioByEmailAndStatus(this.email, true)
         .subscribe(data => {

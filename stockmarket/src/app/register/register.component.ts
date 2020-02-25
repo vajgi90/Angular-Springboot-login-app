@@ -1,14 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { AuthService } from "../service/auth.service";
-import { Router } from "@angular/router";
-import { UserRegister } from "../model/userregister";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../service/auth.service';
+import { Router } from '@angular/router';
+import { UserRegister } from '../model/userregister';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.css"]
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
 
@@ -18,25 +19,33 @@ export class RegisterComponent implements OnInit {
 
   errorMessage: any = '';
 
+  subs: Subscription;
+
+  // reactive approach
+  signupForm: FormGroup;
+
   constructor(private authService: AuthService, private router: Router, private dialog: MatDialog) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.signupForm = new FormGroup({
+      email: new FormControl(null, Validators.required && Validators.email),
+      password: new FormControl(null, Validators.required),
+      firstName: new FormControl(null, Validators.required),
+      lastName: new FormControl(null, Validators.required),
+      birthdate: new FormControl(null, Validators.required)
+    });
+  }
 
-  onSubmit(form: NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
-    const firstName = form.value.firstName;
-    const lastName = form.value.lastName;
-    const birthdate = form.value.birthdate;
+  onSubmit() {
     const user = new UserRegister(
-      email,
-      password,
-      firstName,
-      lastName,
-      birthdate
+      this.signupForm.value.email,
+      this.signupForm.value.password,
+      this.signupForm.value.firstName,
+      this.signupForm.value.lastName,
+      this.signupForm.value.birthdate
     );
     console.log(user);
-    this.authService.signUp(user).subscribe(
+    this.subs = this.authService.signUp(user).subscribe(
       resData => {
         console.log(resData);
         this.dialog.closeAll();
@@ -47,7 +56,7 @@ export class RegisterComponent implements OnInit {
         this.handleError(error);
       }
     );
-    form.reset();
+    this.signupForm.reset();
   }
 
   handleError(error: any) {
@@ -60,4 +69,5 @@ export class RegisterComponent implements OnInit {
       this.showSpinner = false;
     }, 5000);
   }
+
 }

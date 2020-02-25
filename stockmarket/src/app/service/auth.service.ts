@@ -32,6 +32,7 @@ export class AuthService {
   login(username: string, password: string) {
     const loginUrl = 'http://localhost:8080/oauth/token';
     this.username = username;
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: 'Basic ' + btoa('fooClientIdPassword:secret')
@@ -118,7 +119,7 @@ export class AuthService {
   }
 
   deleteUser(email: string) {
-    const deleteUserUrl = 'http://localhost:8080/api/user';
+    const deleteUserUrl = 'http://localhost:8080/api/users';
     const params = new HttpParams()
     .set('email', email);
     return this.http.delete(deleteUserUrl, {params});
