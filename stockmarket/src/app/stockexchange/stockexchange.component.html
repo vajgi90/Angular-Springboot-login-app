@@ -33,14 +33,14 @@
           </thead>
           <tbody>
             <tr>
-              <td scope="row">{{stocks?.symbol}}</td>
-              <td>{{stocks?.previousClose}}</td>
-              <td>{{stocks?.week52Low}}</td>
-              <td>{{stocks?.week52High}}</td>
+              <td scope="row">{{(stocks$ | async)?.symbol}}</td>
+              <td>{{(stocks$ | async)?.previousClose}}</td>
+              <td>{{(stocks$ | async)?.week52Low}}</td>
+              <td>{{(stocks$ | async)?.week52High}}</td>
               <td>{{lastPrice}}</td>
-              <td>{{stocks?.isUSMarketOpen}}</td>
-              <td>{{stocks?.change}}</td>
-              <td>{{stocks?.changePercent}}</td>
+              <td>{{(stocks$ | async)?.isUSMarketOpen}}</td>
+              <td>{{(stocks$ | async)?.change}}</td>
+              <td>{{(stocks$ | async)?.changePercent}}</td>
             </tr>
           </tbody>
         </table>
@@ -65,6 +65,6 @@
   </div>
   <div class="row w-100 justify-content-center">
     <div class="col-12">
-    <canvas id="graph" style="display: block; height: 600px">{{lineChart}}</canvas> 
+    <canvas id="graph" style="display: block; height: 600px">{{lineChart}}</canvas>
   </div>
 </div>

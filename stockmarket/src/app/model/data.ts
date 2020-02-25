@@ -1,0 +1,32 @@
+export interface Data {
+  id: number;
+  symbol: string;
+  companyName: string;
+  primaryExchange: string;
+  calculationPrice: string;
+  open: number;
+  openTime: number;
+  close: number;
+  closeTime: number;
+  high: number;
+  low: number;
+  latestPrice: number;
+  latestSource: string;
+  latestTime: Date;
+  latestUpdate: number;
+  latestVolume: number;
+  previousClose: number;
+  previousVolume: number;
+  downloadTime: string;
+  change: number;
+  changePercent: number;
+  volume: number;
+  avgTotalVolume: number;
+  marketCap: number;
+  peRatio: number;
+  week52High: number;
+  week52Low: number;
+  ytdChange: number;
+  lastTradeTime: number;
+  isUSMarketOpen: false;
+}

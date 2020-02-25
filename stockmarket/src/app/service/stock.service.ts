@@ -3,6 +3,7 @@ import { Observable, interval } from "rxjs";
 import { Injectable } from "@angular/core";
 import { BuyData } from "../model/buydata";
 import { forkJoin } from 'rxjs';
+import { Data } from '@angular/router';
 
 @Injectable({ providedIn: "root" })
 export class StockService {
@@ -56,9 +57,9 @@ export class StockService {
     return this.http.get(sellStockURL + id);
   }
 
-  getSpecificStock(symbol: string): Observable<any> {
+  getSpecificStock(symbol: string): Observable<Data[]> {
     const getSpecificStockURL = '//localhost:8080/api/stock/';
-    return this.http.get(getSpecificStockURL + symbol);
+    return this.http.get<Data[]>(getSpecificStockURL + symbol);
   }
 
   getSpecificStockList(symbol: string): Observable<any> {
