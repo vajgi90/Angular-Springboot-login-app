@@ -8,6 +8,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: pwd
       MYSQL_DATABASE: stockmarket
-      MYSQL_USER: vajgi90
-      MYSQL_PASSWORD: Vt901107
+      MYSQL_USER: broker
+      MYSQL_PASSWORD: KkN7{/uvw}?CKi).hDY8YSM0}YMC3QT
 

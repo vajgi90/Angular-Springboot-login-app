@@ -1,8 +1,8 @@
 package hu.flowacademy.stockmarket.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hu.flowacademy.stockmarket.exception.ValidationException;
 import hu.flowacademy.stockmarket.persistance.model.Stock;
 import hu.flowacademy.stockmarket.persistance.repository.StockRepository;
 import lombok.AllArgsConstructor;
@@ -52,6 +52,7 @@ public class StockService {
     }
 
     public Stock stockDownloader(String symbol) throws JsonProcessingException, JSONException {
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         String resourceUrl = "https://sandbox.iexapis.com/stable/stock/" + symbol.toUpperCase() + "/quote?token=Tpk_634a471be2db41a096a3488d074c24a3";
         HttpEntity<String> entity = new HttpEntity<String>(headers);

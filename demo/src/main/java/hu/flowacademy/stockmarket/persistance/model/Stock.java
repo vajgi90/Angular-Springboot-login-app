@@ -68,36 +68,36 @@ public class Stock {
     @Transient
     private Double iexRealtimePrice;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Long iexRealtimeSize;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Long iexLastUpdated;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Double delayedPrice;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Long delayedPriceTime;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Double extendedPrice;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Double extendedChange;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Double extendedChangePercent;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Long extendedPriceTime;
 
     private Double previousClose;
@@ -111,30 +111,30 @@ public class Stock {
 
     private Long volume;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Double iexMarketPercent;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Long iexVolume;
 
     private Long avgTotalVolume;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Long iexBidPrice;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Long iexBidSize;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Long iexAskPrice;
 
-    @JsonIgnore
-    @Transient
+/*    @JsonIgnore
+    @Transient*/
     private Long iexAskSize;
 
     private Long marketCap;
