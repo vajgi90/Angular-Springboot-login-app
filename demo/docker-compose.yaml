@@ -7,7 +7,7 @@ services:
       - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: pwd
-      MYSQL_DATABASE: stockmarket_db
-      MYSQL_USER: sm_user
-      MYSQL_PASSWORD: 123456
+      MYSQL_DATABASE: stockmarket
+      MYSQL_USER: broker
+      MYSQL_PASSWORD: KkN7{/uvw}?CKi).hDY8YSM0}YMC3QT
 
