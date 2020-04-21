@@ -27,8 +27,13 @@ public class PortfolioResource {
 
     @GetMapping("portfolio/sort")
     public ResponseEntity<?> findAllByEmailAndStatus(@RequestParam(value = "email") String email, @RequestParam(value = "isOpen") boolean isOpen) {
-        Optional<List<Portfolio>> portfolio = portfolioService.findByEmailAndOpen(email, isOpen);
-        return new ResponseEntity<>(portfolio, HttpStatus.OK);
+        if(isOpen) {
+            Optional<List<Portfolio>> portfolio = portfolioService.findByEmailAndOpen(email, true);
+            return new ResponseEntity<>(portfolio, HttpStatus.OK);
+        } else {
+            Optional<List<Portfolio>> portfolio = portfolioService.findByEmailAndClosed(email, false);
+            return new ResponseEntity<>(portfolio, HttpStatus.OK);
+        }
     }
 
 

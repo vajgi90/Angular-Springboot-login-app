@@ -1,8 +1,4 @@
 package hu.flowacademy.stockmarket.persistance.dto;
-
-import lombok.*;
-
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

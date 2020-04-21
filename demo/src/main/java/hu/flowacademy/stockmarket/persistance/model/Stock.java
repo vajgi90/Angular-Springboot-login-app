@@ -1,12 +1,18 @@
 package hu.flowacademy.stockmarket.persistance.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -64,40 +70,53 @@ public class Stock {
 
     private Long latestVolume;
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(pattern="HH:mm:ss")
+    private LocalDateTime downloadTime;
+
     @JsonIgnore
     @Transient
     private Double iexRealtimePrice;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Long iexRealtimeSize;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Long iexLastUpdated;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Double delayedPrice;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Long delayedPriceTime;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Double extendedPrice;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Double extendedChange;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Double extendedChangePercent;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
+    private Double oddLotDelayedPrice;
+
+    @JsonIgnore
+    @Transient
+    private Long oddLotDelayedPriceTime;
+
+    @JsonIgnore
+    @Transient
     private Long extendedPriceTime;
 
     private Double previousClose;
@@ -111,30 +130,30 @@ public class Stock {
 
     private Long volume;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Double iexMarketPercent;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Long iexVolume;
 
     private Long avgTotalVolume;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Long iexBidPrice;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Long iexBidSize;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Long iexAskPrice;
 
-/*    @JsonIgnore
-    @Transient*/
+    @JsonIgnore
+    @Transient
     private Long iexAskSize;
 
     private Long marketCap;
